@@ -4,6 +4,7 @@ import express from "express";
 
 import cubiculoRutas from "../../app/room/route/cubiculoRutas";
 import reservacionRutas from "../../app/reservation/route/reservacionRutas";
+import rolRutas from "../../app/role/route/rolRutas";
 
 class Server {
 
@@ -31,6 +32,7 @@ class Server {
 
         this.app.use("/room", cubiculoRutas);
         this.app.use("/reservation", reservacionRutas);
+        this.app.use("/role", rolRutas);
 
     }
 

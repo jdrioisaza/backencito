@@ -150,3 +150,10 @@ md src/app/reservation/dao
 md src/app/reservation/repository
 md src/app/reservation/entity
 md src/app/reservation/route
+
+md src/app/role
+md src/app/role/controller
+md src/app/role/dao
+md src/app/role/repository
+md src/app/role/entity
+md src/app/role/route
