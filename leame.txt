@@ -1,0 +1,152 @@
+# *****************************************************************
+# CREAR PACKAGE.json
+
+npm init
+
+# *****************************************************************
+# INSTALACIÓN DE LIBRERIAS
+
+npm i cors
+npm i express
+npm i morgan
+npm i pg-promise
+npm i bcryptjs
+npm i formidable
+npm i jsonwebtoken
+npm i sharp
+npm i nanoid@3
+
+npm i dotenv --save-dev
+# INSTALAR JUNTO CON LA EXTENSIÓN
+
+npm i nodemon --save-dev
+npm i @types/cors --save-dev
+npm i @types/morgan --save-dev
+npm i @types/express --save-dev
+npm i @types/bcryptjs --save-dev
+npm i @types/formidable --save-dev
+npm i @types/jsonwebtoken --save-dev
+
+# AHORA USAMOS TYPESCRIPT
+
+tsc --init
+
+# AHORA CONFIGURAMOS EL ARCHIVO tsconfig.json
+
+"outDir": "./build",  
+"resolveJsonModule": true,    
+
+# ABRIR package.json E INCLUIR LOS SCRIPTS A USAR
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon build/index.js",
+    "build": "tsc -w"
+  },
+
+# ORGANIZANDO
+
+md src
+md database
+
+md src/app
+md src/config
+md src/middleware
+md src/external_files
+
+md src/config/api
+md src/config/domain
+md src/config/utilities
+md src/config/connection
+
+md src/external_files/pdf
+md src/external_files/excel
+md src/external_files/image
+md src/external_files/image/tmp
+md src/external_files/image/photo
+md src/external_files/image/system
+
+md src/app/room
+md src/app/room/controller
+md src/app/room/dao
+md src/app/room/repository
+md src/app/room/entity
+md src/app/room/route
+
+md src/app/login
+md src/app/login/controller
+md src/app/login/dao
+md src/app/login/repository
+md src/app/login/entity
+md src/app/login/route
+
+# AHORA VAMOS A COLOCAR LOS ARCHIVOS DE CONEXIÓN DEL EQUIPO DE DESARROLLO DE LA PG-PROMISE
+
+camelCase.ts src\config\connection\camelCase.ts
+
+import pgPromise from "pg-promise";
+
+export interface IClient{}
+
+export function camelizeColumns(data: any) {
+
+    const tmp = data[0];
+    for (const prop in tmp) {
+
+        const camel = pgPromise.utils.camelize(prop);
+
+        if (!(camel in tmp)) {
+
+            for (let i = 0; i < data.length; i++) {
+
+                const d = data[i];
+                d[camel] = d[prop];
+                delete d[prop];
+
+            }
+
+        }
+
+    }
+
+}
+
+# AHORA VAMOS A CREAR LAS OPCIONES DE CONFIGURACIÓN DE LOS CREADORES DE LA PG-PROMISE
+
+import pgPromise from "pg-promise";
+import { camelizeColumns, IClient } from "./camelCase";
+
+export const optionsPG: pgPromise.IInitOptions<IClient> = {
+
+    receive(e) {
+        
+        camelizeColumns(e.data);
+
+    },
+
+};
+
+# variables.env
+
+PORT = 5432
+DATABASE = "bd_reservaciones"
+HOST = "localhost"
+USER_DB = "user_is"
+PASSWORD = "123456"
+
+# CONEXIÓN A LA BASE DE DATOS
+
+src\config\connection\dbConnection.ts
+
+# UN EJEMPLO DE UN DOMINIO
+
+src\config\domain\var_imagenes.ts
+
+# AHORA VAMOS A VER LAS ENTIDADES
+
+md src/app/reservation
+md src/app/reservation/controller
+md src/app/reservation/dao
+md src/app/reservation/repository
+md src/app/reservation/entity
+md src/app/reservation/route
