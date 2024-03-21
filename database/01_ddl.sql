@@ -2,7 +2,8 @@
 CREATE TABLE cubiculos (
     id_cubiculo SERIAL NOT NULL PRIMARY KEY,
     numero_cubiculo INT NOT NULL,
-    capacidad_maxima_cubiculo INT NOT NULL
+    capacidad_maxima_cubiculo INT NOT NULL,
+    url_imagen_cubiculo TEXT NULL
 );
 
 CREATE TABLE tipos_estados_penalizaciones (

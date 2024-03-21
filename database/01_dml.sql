@@ -1,8 +1,8 @@
-INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo) VALUES (1, 5);
-INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo) VALUES (2, 10);
-INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo) VALUES (3, 2);
-INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo) VALUES (4, 10);
-INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo) VALUES (5, 5);
+INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo, url_imagen_cubiculo) VALUES (1, 5, NULL);
+INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo, url_imagen_cubiculo) VALUES (2, 10, NULL);
+INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo, url_imagen_cubiculo) VALUES (3, 2, NULL);
+INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo, url_imagen_cubiculo) VALUES (4, 10, NULL);
+INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo, url_imagen_cubiculo) VALUES (5, 5, NULL);
 
 INSERT INTO tipos_estados_penalizaciones(nombre_tipo_estado_penalizacion, descripcion_tipo_estado_penalizacion) VALUES ('Activa', NULL);
 INSERT INTO tipos_estados_penalizaciones(nombre_tipo_estado_penalizacion, descripcion_tipo_estado_penalizacion) VALUES ('Inactiva', NULL);
