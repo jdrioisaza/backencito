@@ -1,3 +1,4 @@
+/*X*/
 CREATE TABLE cubiculos (
     id_cubiculo SERIAL NOT NULL PRIMARY KEY,
     numero_cubiculo INT NOT NULL,
@@ -12,6 +13,7 @@ CREATE TABLE tipos_estados_penalizaciones (
 
 );
 
+/*X*/
 CREATE TABLE roles (
 
     id_rol SERIAL NOT NULL PRIMARY KEY,
@@ -20,6 +22,7 @@ CREATE TABLE roles (
 
 );
 
+/*X*/
 CREATE TABLE personas (
 
     id_persona SERIAL NOT NULL PRIMARY KEY,
@@ -52,6 +55,7 @@ CREATE TABLE tipos_estados_reservaciones (
 
 );
 
+/*X*/
 CREATE TABLE reservaciones (
 
     id_reservacion SERIAL NOT NULL PRIMARY KEY,
@@ -68,6 +72,7 @@ CREATE TABLE reservaciones (
 
 );
 
+/*X*/
 CREATE TABLE penalizaciones (
 
     id_penalizacion SERIAL NOT NULL PRIMARY KEY,

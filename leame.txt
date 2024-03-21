@@ -144,6 +144,13 @@ src\config\domain\var_imagenes.ts
 
 # AHORA VAMOS A VER LAS ENTIDADES
 
+md src/app/room
+md src/app/room/controller
+md src/app/room/dao
+md src/app/room/repository
+md src/app/room/entity
+md src/app/room/route
+
 md src/app/reservation
 md src/app/reservation/controller
 md src/app/reservation/dao
@@ -157,3 +164,17 @@ md src/app/role/dao
 md src/app/role/repository
 md src/app/role/entity
 md src/app/role/route
+
+md src/app/person
+md src/app/person/controller
+md src/app/person/dao
+md src/app/person/repository
+md src/app/person/entity
+md src/app/person/route
+
+md src/app/penalty
+md src/app/penalty/controller
+md src/app/penalty/dao
+md src/app/penalty/repository
+md src/app/penalty/entity
+md src/app/penalty/route

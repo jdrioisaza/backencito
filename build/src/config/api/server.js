@@ -9,6 +9,8 @@ const express_1 = __importDefault(require("express"));
 const cubiculoRutas_1 = __importDefault(require("../../app/room/route/cubiculoRutas"));
 const reservacionRutas_1 = __importDefault(require("../../app/reservation/route/reservacionRutas"));
 const rolRutas_1 = __importDefault(require("../../app/role/route/rolRutas"));
+const personaRutas_1 = __importDefault(require("../../app/person/route/personaRutas"));
+const penalizacionRutas_1 = __importDefault(require("../../app/penalty/route/penalizacionRutas"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -26,6 +28,8 @@ class Server {
         this.app.use("/room", cubiculoRutas_1.default);
         this.app.use("/reservation", reservacionRutas_1.default);
         this.app.use("/role", rolRutas_1.default);
+        this.app.use("/person", personaRutas_1.default);
+        this.app.use("/penalty", penalizacionRutas_1.default);
     }
     start() {
         this.app.listen(this.app.get("PORT"), () => {
