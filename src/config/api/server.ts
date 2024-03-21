@@ -7,6 +7,8 @@ import reservacionRutas from "../../app/reservation/route/reservacionRutas";
 import rolRutas from "../../app/role/route/rolRutas";
 import personaRutas from "../../app/person/route/personaRutas";
 import penalizacionRutas from "../../app/penalty/route/penalizacionRutas";
+import tipopenalizacionRutas from "../../app/penaltytype/route/tipopenalizacionRutas";
+import tipoestadopenalizacionRutas from "../../app/penaltystatustype/route/tipoestadopenalizacionRutas";
 
 class Server {
 
@@ -37,6 +39,8 @@ class Server {
         this.app.use("/role", rolRutas);
         this.app.use("/person", personaRutas);
         this.app.use("/penalty", penalizacionRutas);
+        this.app.use("/penaltytype", tipopenalizacionRutas);
+        this.app.use("/penaltystatustype", tipoestadopenalizacionRutas);
 
     }
 

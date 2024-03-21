@@ -39,3 +39,15 @@ INSERT INTO penalizaciones(id_persona_penalizacion, id_reservacion_penalizacion,
 INSERT INTO penalizaciones(id_persona_penalizacion, id_reservacion_penalizacion, id_tipo_penalizacion, fecha_inicio_penalizacion, fecha_fin_penalizacion, hora_inicio_penalizacion, hora_fin_penalizacion) VALUES (2, 1, 3, '2024/01/18', '2024/01/23', '14:00:00', '14:00:00');
 INSERT INTO penalizaciones(id_persona_penalizacion, id_reservacion_penalizacion, id_tipo_penalizacion, fecha_inicio_penalizacion, fecha_fin_penalizacion, hora_inicio_penalizacion, hora_fin_penalizacion) VALUES (3, 2, 2, '2024/02/02', '2024/02/14', '08:00:00', '08:00:00');
 INSERT INTO penalizaciones(id_persona_penalizacion, id_reservacion_penalizacion, id_tipo_penalizacion, fecha_inicio_penalizacion, fecha_fin_penalizacion, hora_inicio_penalizacion, hora_fin_penalizacion) VALUES (3, 4, 2, '2024/02/21', NULL, '09:00:00', NULL);
+
+INSERT INTO estados_reservaciones(id_tipo_estado_reservacion, id_reservacion_estado_reservacion) VALUES (2, 1);
+INSERT INTO estados_reservaciones(id_tipo_estado_reservacion, id_reservacion_estado_reservacion) VALUES (2, 2);
+INSERT INTO estados_reservaciones(id_tipo_estado_reservacion, id_reservacion_estado_reservacion) VALUES (2, 3);
+INSERT INTO estados_reservaciones(id_tipo_estado_reservacion, id_reservacion_estado_reservacion) VALUES (3, 4);
+INSERT INTO estados_reservaciones(id_tipo_estado_reservacion, id_reservacion_estado_reservacion) VALUES (2, 5);
+
+INSERT INTO estados_penalizaciones(id_tipo_estado_penalizacion, id_penalizacion_estado_penalizacion) VALUES (1, 4);
+INSERT INTO estados_penalizaciones(id_tipo_estado_penalizacion, id_penalizacion_estado_penalizacion) VALUES (2, 3);
+INSERT INTO estados_penalizaciones(id_tipo_estado_penalizacion, id_penalizacion_estado_penalizacion) VALUES (2, 5);
+INSERT INTO estados_penalizaciones(id_tipo_estado_penalizacion, id_penalizacion_estado_penalizacion) VALUES (1, 1);
+INSERT INTO estados_penalizaciones(id_tipo_estado_penalizacion, id_penalizacion_estado_penalizacion) VALUES (2, 2);

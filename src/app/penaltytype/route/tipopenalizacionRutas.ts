@@ -1,0 +1,24 @@
+import { Router } from "express";
+import tipoPenalizacionControlador from "../controller/tipopenalizacionControlador";
+
+class TipoPenalizacionRutas {
+
+    public apiRutaTipoPenalizacion: Router;
+
+    constructor() {
+
+        this.apiRutaTipoPenalizacion = Router();
+        this.misRutas();
+
+    }
+    
+    private misRutas():void {
+
+        this.apiRutaTipoPenalizacion.get("/getall", tipoPenalizacionControlador.damelasTodas);
+
+    }
+
+}
+
+const tipoPenalizacionRutas = new TipoPenalizacionRutas;
+export default tipoPenalizacionRutas.apiRutaTipoPenalizacion;

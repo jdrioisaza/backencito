@@ -6,6 +6,7 @@ CREATE TABLE cubiculos (
     url_imagen_cubiculo TEXT NULL
 );
 
+/*X*/
 CREATE TABLE tipos_estados_penalizaciones (
 
     id_tipo_estado_penalizacion SERIAL NOT NULL PRIMARY KEY,
@@ -39,6 +40,7 @@ CREATE TABLE personas (
 
 );
 
+/*X*/
 CREATE TABLE tipos_penalizaciones (
 
     id_tipo_penalizacion SERIAL NOT NULL PRIMARY KEY,
@@ -97,7 +99,7 @@ CREATE TABLE estados_reservaciones (
     id_tipo_estado_reservacion INTEGER NOT NULL,
     id_reservacion_estado_reservacion INTEGER NOT NULL,
 
-    FOREIGN KEY (id_reservacion_estado_reservacion) REFERENCES tipos_estados_reservaciones(id_tipo_estado_reservacion),
+    FOREIGN KEY (id_tipo_estado_reservacion) REFERENCES tipos_estados_reservaciones(id_tipo_estado_reservacion),
     FOREIGN KEY (id_reservacion_estado_reservacion) REFERENCES reservaciones(id_reservacion)
 
 );

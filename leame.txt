@@ -178,3 +178,17 @@ md src/app/penalty/dao
 md src/app/penalty/repository
 md src/app/penalty/entity
 md src/app/penalty/route
+
+md src/app/penaltytype
+md src/app/penaltytype/controller
+md src/app/penaltytype/dao
+md src/app/penaltytype/repository
+md src/app/penaltytype/entity
+md src/app/penaltytype/route
+
+md src/app/penaltystatustype
+md src/app/penaltystatustype/controller
+md src/app/penaltystatustype/dao
+md src/app/penaltystatustype/repository
+md src/app/penaltystatustype/entity
+md src/app/penaltystatustype/route
