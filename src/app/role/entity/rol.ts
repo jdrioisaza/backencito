@@ -1,14 +1,14 @@
 class Rol {
 
     public idRol: number;
-    public nombre: string;
-    public descripcion: string;
+    public nombreRol: string;
+    public descripcionRol: string;
 
-    constructor(idrol: number, nombre: string, descripcion: string) {
+    constructor(idrol: number, nombrer: string, descripcionr: string) {
 
         this.idRol = idrol;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.nombreRol = nombrer;
+        this.descripcionRol = descripcionr;
 
     }
 

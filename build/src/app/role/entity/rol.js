@@ -1,8 +1,8 @@
 "use strict";
 class Rol {
-    constructor(idrol, nombre, descripcion) {
+    constructor(idrol, nombrer, descripcionr) {
         this.idRol = idrol;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.nombreRol = nombrer;
+        this.descripcionRol = descripcionr;
     }
 }
