@@ -15,6 +15,7 @@ const tipopenalizacionRutas_1 = __importDefault(require("../../app/penaltytype/r
 const tipoestadopenalizacionRutas_1 = __importDefault(require("../../app/penaltystatustype/route/tipoestadopenalizacionRutas"));
 const tipoestadodereservaRutas_1 = __importDefault(require("../../app/reservationstatustype/route/tipoestadodereservaRutas"));
 const estadoreservacionRutas_1 = __importDefault(require("../../app/reservationstatus/route/estadoreservacionRutas"));
+const estadopenalizacionRutas_1 = __importDefault(require("../../app/penaltystatus/route/estadopenalizacionRutas"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -38,6 +39,7 @@ class Server {
         this.app.use("/penaltystatustype", tipoestadopenalizacionRutas_1.default);
         this.app.use("/reservationstatustype", tipoestadodereservaRutas_1.default);
         this.app.use("/reservationstatus", estadoreservacionRutas_1.default);
+        this.app.use("/penaltystatus", estadopenalizacionRutas_1.default);
     }
     start() {
         this.app.listen(this.app.get("PORT"), () => {

@@ -193,6 +193,13 @@ md src/app/penaltystatustype/repository
 md src/app/penaltystatustype/entity
 md src/app/penaltystatustype/route
 
+md src/app/penaltystatus
+md src/app/penaltystatus/controller
+md src/app/penaltystatus/dao
+md src/app/penaltystatus/repository
+md src/app/penaltystatus/entity
+md src/app/penaltystatus/route
+
 md src/app/reservationstatustype
 md src/app/reservationstatustype/controller
 md src/app/reservationstatustype/dao

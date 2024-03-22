@@ -11,6 +11,7 @@ import tipopenalizacionRutas from "../../app/penaltytype/route/tipopenalizacionR
 import tipoestadopenalizacionRutas from "../../app/penaltystatustype/route/tipoestadopenalizacionRutas";
 import tipoEstadoReservacionRutas from "../../app/reservationstatustype/route/tipoestadodereservaRutas";
 import EstadoReservacionRutas from "../../app/reservationstatus/route/estadoreservacionRutas";
+import estadoPenalizacionRutas from "../../app/penaltystatus/route/estadopenalizacionRutas";
 
 class Server {
 
@@ -45,6 +46,7 @@ class Server {
         this.app.use("/penaltystatustype", tipoestadopenalizacionRutas);
         this.app.use("/reservationstatustype", tipoEstadoReservacionRutas);
         this.app.use("/reservationstatus", EstadoReservacionRutas);
+        this.app.use("/penaltystatus", estadoPenalizacionRutas);
 
     }
 
