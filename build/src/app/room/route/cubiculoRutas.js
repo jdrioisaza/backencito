@@ -12,6 +12,7 @@ class CubiculoRutas {
     }
     misRutas() {
         this.apiRutaCubiculo.get("/getall", cubiculoControlador_1.default.damelasTodas);
+        this.apiRutaCubiculo.post("/addcito", cubiculoControlador_1.default.cogeTuCubiculo);
     }
 }
 const cubiculoRutas = new CubiculoRutas;

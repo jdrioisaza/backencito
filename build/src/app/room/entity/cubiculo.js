@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Cubiculo {
     constructor(id, numcubiculo, cmaxcubiculo, urlimgcubiculo) {
         this.idCubiculo = id;
@@ -7,3 +8,4 @@ class Cubiculo {
         this.urlImagenCubiculo = urlimgcubiculo;
     }
 }
+exports.default = Cubiculo;

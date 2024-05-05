@@ -28,5 +28,39 @@ class CubiculoDAO {
             });
         });
     }
+    static grabeloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 1;
+                let cubiYeah;
+                const cubi = yield consulta.one(cubiculo_sql_1.SQL_CUBICULO.HOW_MANY, [
+                    datos.numeroCubiculo,
+                ]);
+                if (cubi.existe == 0) {
+                    queHacer = 2;
+                    const cubiYeah = yield consulta.one(cubiculo_sql_1.SQL_CUBICULO.ADD, [
+                        datos.numeroCubiculo,
+                        datos.capacidadMaximaCubiculo,
+                    ]);
+                }
+                return { queHacer, cubiYeah };
+            }))
+                .then(({ queHacer, cubiYeah }) => {
+                switch (queHacer) {
+                    case 1:
+                        res.status(400).json({ respuesta: "ya existe" });
+                        break;
+                    default:
+                        res.status(200).json(cubiYeah);
+                        break;
+                }
+            })
+                .catch((miError) => {
+                console.log(miError);
+                res.status(400).json({ respuesta: "se totio" });
+            });
+        });
+    }
 }
 exports.default = CubiculoDAO;

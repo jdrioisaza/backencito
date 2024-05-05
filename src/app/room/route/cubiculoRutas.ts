@@ -15,6 +15,7 @@ class CubiculoRutas {
     private misRutas():void {
 
         this.apiRutaCubiculo.get("/getall", cubiculoControlador.damelasTodas);
+        this.apiRutaCubiculo.post("/addcito", cubiculoControlador.cogeTuCubiculo);
 
     }
 

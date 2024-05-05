@@ -15,3 +15,5 @@ class Cubiculo {
     }
 
 }
+
+export default Cubiculo;
