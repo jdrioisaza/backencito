@@ -15,6 +15,7 @@ class TipoEstadoReservacionRutas {
     private misRutas():void {
 
         this.apiRutaTipoEstadoReservacion.get("/getall", tipoEstadoReservacionControlador.damelasTodas);
+        this.apiRutaTipoEstadoReservacion.post("/addcito", tipoEstadoReservacionControlador.cogeTuTEReservacion);
 
     }
 

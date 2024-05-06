@@ -40,6 +40,7 @@ CREATE TABLE personas (
 
 );
 
+/*X*/
 CREATE TABLE tipos_penalizaciones (
 
     id_tipo_penalizacion SERIAL NOT NULL PRIMARY KEY,
@@ -49,6 +50,7 @@ CREATE TABLE tipos_penalizaciones (
 
 );
 
+/*X*/
 CREATE TABLE tipos_estados_reservaciones (
 
     id_tipo_estado_reservacion SERIAL NOT NULL PRIMARY KEY,

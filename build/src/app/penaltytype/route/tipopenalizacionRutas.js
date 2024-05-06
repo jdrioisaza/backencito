@@ -12,6 +12,7 @@ class TipoPenalizacionRutas {
     }
     misRutas() {
         this.apiRutaTipoPenalizacion.get("/getall", tipopenalizacionControlador_1.default.damelasTodas);
+        this.apiRutaTipoPenalizacion.post("/addcito", tipopenalizacionControlador_1.default.cogeTuTPenalizacion);
     }
 }
 const tipoPenalizacionRutas = new TipoPenalizacionRutas;

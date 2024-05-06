@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class TipoPenalizacion {
     constructor(idtipop, nombretipop, descripciontipop) {
         this.idTipoPenalizacion = idtipop;
@@ -6,3 +7,4 @@ class TipoPenalizacion {
         this.descripcionTipoPenalizacion = descripciontipop;
     }
 }
+exports.default = TipoPenalizacion;

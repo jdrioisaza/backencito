@@ -28,5 +28,39 @@ class TipoEstadoReservacionDAO {
             });
         });
     }
+    static grabeloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 1;
+                let tereservaYeah;
+                const tereserva = yield consulta.one(tipoestadodereserva_sql_1.SQL_TIPO_ESTADO_RESERVA.HOW_MANY, [
+                    datos.nombre_tipo_estado_reservacion,
+                ]);
+                if (tereserva.existe == 0) {
+                    queHacer = 2;
+                    const tereservaYeah = yield consulta.one(tipoestadodereserva_sql_1.SQL_TIPO_ESTADO_RESERVA.ADD, [
+                        datos.nombre_tipo_estado_reservacion,
+                        datos.descripcion_tipo_estado_reservacion,
+                    ]);
+                }
+                return { queHacer, tereservaYeah };
+            }))
+                .then(({ queHacer, tereservaYeah }) => {
+                switch (queHacer) {
+                    case 1:
+                        res.status(400).json({ respuesta: "ya existe un tipo de estado de reservación con ese nombre" });
+                        break;
+                    default:
+                        res.status(200).json(tereservaYeah);
+                        break;
+                }
+            })
+                .catch((miError) => {
+                console.log(miError);
+                res.status(400).json({ respuesta: "se totio" });
+            });
+        });
+    }
 }
 exports.default = TipoEstadoReservacionDAO;

@@ -13,3 +13,5 @@ class TipoPenalizacion {
     }
 
 }
+
+export default TipoPenalizacion;

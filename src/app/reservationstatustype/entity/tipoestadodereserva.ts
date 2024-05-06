@@ -10,3 +10,5 @@ class TipoEstadoDeReserva{
     }
     
 }
+
+export default TipoEstadoDeReserva;

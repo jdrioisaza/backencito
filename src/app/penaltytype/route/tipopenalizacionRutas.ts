@@ -15,6 +15,7 @@ class TipoPenalizacionRutas {
     private misRutas():void {
 
         this.apiRutaTipoPenalizacion.get("/getall", tipoPenalizacionControlador.damelasTodas);
+        this.apiRutaTipoPenalizacion.post("/addcito", tipoPenalizacionControlador.cogeTuTPenalizacion);
 
     }
 
