@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import TipoEstadoPenalizacion from "../entity/tipoestadopenalizacion";
 import TipoEstadoPenalizacionDAO from "../dao/tipoestadopenalizacionDAO";
 
 class TipoEstadoPenalizacionControlador extends TipoEstadoPenalizacionDAO {
@@ -8,6 +9,13 @@ class TipoEstadoPenalizacionControlador extends TipoEstadoPenalizacionDAO {
         TipoEstadoPenalizacionDAO.obtenerTodos([], res);
 
     }
+
+    public cogeTuCubiculo(req: Request, res: Response): void {
+        const objTipoEstadoPenalizacion: TipoEstadoPenalizacion = new TipoEstadoPenalizacion(0, "0", "0");
+        objTipoEstadoPenalizacion.nombreTipoEstadoPenalizacion = req.body.nombreTipoEstadoPenalizacion;
+        objTipoEstadoPenalizacion.descripcionTipoEstadoPenalizacion = req.body.descripcionTipoEstadoPenalizacion;
+        TipoEstadoPenalizacionDAO.grabeloYa(objTipoEstadoPenalizacion, res);
+      }
 
 }
 

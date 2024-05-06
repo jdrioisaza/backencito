@@ -28,5 +28,39 @@ class TipoEstadoPenalizacionDAO {
             });
         });
     }
+    static grabeloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 1;
+                let tepenalizacionYeah;
+                const tepenalizacion = yield consulta.one(tipoestadopenalizacion_sql_1.SQL_TIPO_ESTADO_PENALIZACION.HOW_MANY, [
+                    datos.nombreTipoEstadoPenalizacion,
+                ]);
+                if (tepenalizacion.existe == 0) {
+                    queHacer = 2;
+                    const tepenalizacionYeah = yield consulta.one(tipoestadopenalizacion_sql_1.SQL_TIPO_ESTADO_PENALIZACION.ADD, [
+                        datos.nombreTipoEstadoPenalizacion,
+                        datos.descripcionTipoEstadoPenalizacion,
+                    ]);
+                }
+                return { queHacer, tepenalizacionYeah };
+            }))
+                .then(({ queHacer, tepenalizacionYeah }) => {
+                switch (queHacer) {
+                    case 1:
+                        res.status(400).json({ respuesta: "ya existe un tipo de estado de penalización con ese nombre" });
+                        break;
+                    default:
+                        res.status(200).json(tepenalizacionYeah);
+                        break;
+                }
+            })
+                .catch((miError) => {
+                console.log(miError);
+                res.status(400).json({ respuesta: "se totio" });
+            });
+        });
+    }
 }
 exports.default = TipoEstadoPenalizacionDAO;

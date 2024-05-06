@@ -13,3 +13,5 @@ class TipoEstadoPenalizacion {
     }
 
 }
+
+export default TipoEstadoPenalizacion;
