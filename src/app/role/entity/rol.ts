@@ -13,3 +13,5 @@ class Rol {
     }
 
 }
+
+export default Rol;

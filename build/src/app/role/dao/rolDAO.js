@@ -28,5 +28,39 @@ class RolDAO {
             });
         });
     }
+    static grabeloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 1;
+                let rolYeah;
+                const rol = yield consulta.one(rol_sql_1.SQL_ROL.HOW_MANY, [
+                    datos.nombreRol,
+                ]);
+                if (rol.existe == 0) {
+                    queHacer = 2;
+                    const rolYeah = yield consulta.one(rol_sql_1.SQL_ROL.ADD, [
+                        datos.nombreRol,
+                        datos.descripcionRol,
+                    ]);
+                }
+                return { queHacer, rolYeah };
+            }))
+                .then(({ queHacer, rolYeah }) => {
+                switch (queHacer) {
+                    case 1:
+                        res.status(400).json({ respuesta: "ya existe un rol con ese nombre" });
+                        break;
+                    default:
+                        res.status(200).json(rolYeah);
+                        break;
+                }
+            })
+                .catch((miError) => {
+                console.log(miError);
+                res.status(400).json({ respuesta: "se totio" });
+            });
+        });
+    }
 }
 exports.default = RolDAO;
