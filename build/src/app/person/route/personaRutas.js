@@ -12,6 +12,7 @@ class PersonaRutas {
     }
     misRutas() {
         this.apiRutaPersona.get("/getall", personaControlador_1.default.damelasTodas);
+        this.apiRutaPersona.post("/addcito", personaControlador_1.default.cogeTuPersona);
     }
 }
 const personaRutas = new PersonaRutas;

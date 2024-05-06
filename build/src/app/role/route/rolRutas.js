@@ -12,7 +12,7 @@ class RolRutas {
     }
     misRutas() {
         this.apiRutaRol.get("/getall", rolControlador_1.default.damelasTodas);
-        this.apiRutaRol.post("/addcito", rolControlador_1.default.cogeTuCubiculo);
+        this.apiRutaRol.post("/addcito", rolControlador_1.default.cogeTuRol);
     }
 }
 const rolRutas = new RolRutas;

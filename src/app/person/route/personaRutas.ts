@@ -15,6 +15,7 @@ class PersonaRutas {
     private misRutas():void {
 
         this.apiRutaPersona.get("/getall", personaControlador.damelasTodas);
+        this.apiRutaPersona.post("/addcito", personaControlador.cogeTuPersona);
 
     }
 

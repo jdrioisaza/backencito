@@ -9,7 +9,7 @@ class RolControlador extends rolDAO_1.default {
     damelasTodas(req, res) {
         rolDAO_1.default.obtenerTodos([], res);
     }
-    cogeTuCubiculo(req, res) {
+    cogeTuRol(req, res) {
         const objRol = new rol_1.default(0, "0", "0");
         objRol.nombreRol = req.body.nombreRol;
         objRol.descripcionRol = req.body.descripcionRol;

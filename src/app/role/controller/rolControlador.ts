@@ -7,7 +7,7 @@ class RolControlador extends RolDAO {
     RolDAO.obtenerTodos([], res);
   }
 
-  public cogeTuCubiculo(req: Request, res: Response): void {
+  public cogeTuRol(req: Request, res: Response): void {
     const objRol: Rol = new Rol(0, "0", "0");
     objRol.nombreRol = req.body.nombreRol;
     objRol.descripcionRol = req.body.descripcionRol;

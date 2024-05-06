@@ -23,3 +23,5 @@ class Persona {
     }
 
 }
+
+export default Persona;

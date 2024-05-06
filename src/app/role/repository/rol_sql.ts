@@ -10,4 +10,7 @@ export const SQL_ROL = {
     HOW_MANY: "SELECT COUNT(id_rol) as existe FROM roles \
     WHERE nombre_rol = $1",
 
+    ROLE_EXIST: "SELECT COUNT(id_rol) as existe FROM roles \
+    WHERE id_rol = $1",
+
 }

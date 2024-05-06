@@ -9,7 +9,7 @@ class TipoEstadoPenalizacionControlador extends tipoestadopenalizacionDAO_1.defa
     damelasTodas(req, res) {
         tipoestadopenalizacionDAO_1.default.obtenerTodos([], res);
     }
-    cogeTuCubiculo(req, res) {
+    cogeTuTEPenalizacion(req, res) {
         const objTipoEstadoPenalizacion = new tipoestadopenalizacion_1.default(0, "0", "0");
         objTipoEstadoPenalizacion.nombreTipoEstadoPenalizacion = req.body.nombreTipoEstadoPenalizacion;
         objTipoEstadoPenalizacion.descripcionTipoEstadoPenalizacion = req.body.descripcionTipoEstadoPenalizacion;

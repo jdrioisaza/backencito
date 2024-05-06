@@ -10,7 +10,7 @@ class TipoEstadoPenalizacionControlador extends TipoEstadoPenalizacionDAO {
 
     }
 
-    public cogeTuCubiculo(req: Request, res: Response): void {
+    public cogeTuTEPenalizacion(req: Request, res: Response): void {
         const objTipoEstadoPenalizacion: TipoEstadoPenalizacion = new TipoEstadoPenalizacion(0, "0", "0");
         objTipoEstadoPenalizacion.nombreTipoEstadoPenalizacion = req.body.nombreTipoEstadoPenalizacion;
         objTipoEstadoPenalizacion.descripcionTipoEstadoPenalizacion = req.body.descripcionTipoEstadoPenalizacion;

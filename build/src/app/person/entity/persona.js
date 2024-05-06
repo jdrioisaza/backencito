@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Persona {
     constructor(idpersona, idrolp, primernpersona, segundonpersona, primerapersona, segundoapersona, correoepersona, clavepersona) {
         this.idPersona = idpersona;
@@ -11,3 +12,4 @@ class Persona {
         this.clavePersona = clavepersona;
     }
 }
+exports.default = Persona;

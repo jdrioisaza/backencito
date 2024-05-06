@@ -6,6 +6,7 @@ CREATE TABLE cubiculos (
     url_imagen_cubiculo TEXT NULL
 );
 
+/*X*/
 CREATE TABLE tipos_estados_penalizaciones (
 
     id_tipo_estado_penalizacion SERIAL NOT NULL PRIMARY KEY,
@@ -23,6 +24,7 @@ CREATE TABLE roles (
 
 );
 
+/*X*/
 CREATE TABLE personas (
 
     id_persona SERIAL NOT NULL PRIMARY KEY,

@@ -15,7 +15,7 @@ class RolRutas {
     private misRutas():void {
 
         this.apiRutaRol.get("/getall", rolControlador.damelasTodas);
-        this.apiRutaRol.post("/addcito", rolControlador.cogeTuCubiculo);
+        this.apiRutaRol.post("/addcito", rolControlador.cogeTuRol);
 
     }
 
