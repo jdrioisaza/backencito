@@ -14,6 +14,7 @@ class EstadoPenalizacionRutas {
 
     private misRutas():void {
         this.apiRutaEstadoPenalizacion.get("/getall", estadoPenalizacionControlador.damelasTodas)
+        this.apiRutaEstadoPenalizacion.post("/addcito", estadoPenalizacionControlador.cogeTuEstadoPenalizacion);
     }
 }
 
