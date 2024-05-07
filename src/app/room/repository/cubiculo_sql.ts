@@ -10,4 +10,11 @@ export const SQL_CUBICULO = {
     HOW_MANY: "SELECT COUNT(id_cubiculo) as existe FROM cubiculos \
     WHERE numero_cubiculo = $1",
 
+    HOW_MANY2: "SELECT COUNT(id_cubiculo) as existe FROM cubiculos \
+    WHERE numero_cubiculo = $1 AND id_cubiculo != $2",
+
+    DELETE: "DELETE FROM cubiculos WHERE id_cubiculo = $1", 
+ 
+    UPDATE: "UPDATE cubiculos SET  numero_cubiculo = $1, capacidad_maxima_cubiculo = $2 \
+    WHERE id_cubiculo = $3"
 }

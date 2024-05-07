@@ -13,6 +13,28 @@ class CubiculoControlador extends CubiculoDAO {
     objCubi.capacidadMaximaCubiculo = req.body.capacidadMaximaCubiculo;
     CubiculoDAO.grabeloYa(objCubi, res);
   }
+
+  public borraTuCubiculo(req: Request, res: Response): void {
+    if (isNaN(Number(req.params.idCubiculo))) {
+      res.status(400).json({ respuesta: "Y el codigo my vale?" });
+    } else {
+      const codigito = Number(req.params.idCubiculo);
+      const objCubi: Cubiculo = new Cubiculo(codigito, 0, 0, "0");
+      CubiculoDAO.borreloYa(objCubi, res);
+    }
+  }
+
+  public actualiceTuCubiculo(req: Request, res: Response): void {
+    if (isNaN(Number(req.body.idCubiculo))) {
+      res.status(400).json({ respuesta: "Y el codigo my vale?" });
+    } else {
+      const objCubi: Cubiculo = new Cubiculo(0, 0, 0, "0");
+      objCubi.idCubiculo = Number(req.body.idCubiculo);
+      objCubi.numeroCubiculo = Number(req.body.numeroCubiculo);
+      objCubi.capacidadMaximaCubiculo = Number(req.body.capacidadMaximaCubiculo);
+      CubiculoDAO.actualiceloYa(objCubi, res);
+    }
+  }
 }
 
 const cubiculoControlador = new CubiculoControlador();

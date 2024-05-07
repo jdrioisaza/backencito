@@ -16,6 +16,8 @@ class CubiculoRutas {
 
         this.apiRutaCubiculo.get("/getall", cubiculoControlador.damelasTodas);
         this.apiRutaCubiculo.post("/addcito", cubiculoControlador.cogeTuCubiculo);
+        this.apiRutaCubiculo.delete("/delete/:idCubiculo", cubiculoControlador.borraTuCubiculo);
+        this.apiRutaCubiculo.put("/actualizalo", cubiculoControlador.actualiceTuCubiculo);
 
     }
 
