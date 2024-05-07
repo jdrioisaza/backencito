@@ -1,4 +1,5 @@
 class EstadoPenalizacion {
+    
     public idEstadoPenalizacion: number;
     public idTipoEstadoPenalizacion: number;
     public idPenalizacion: number;
@@ -9,3 +10,5 @@ class EstadoPenalizacion {
         this.idPenalizacion = idPena;
     }
 }
+
+export default EstadoPenalizacion;
