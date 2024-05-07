@@ -14,7 +14,8 @@ class EstadoReservacionRutas {
     
     private misRutas():void {
 
-        this.apiRutaEstadoReservacion.get("/getall", estadoReservacionControlador.damelasTodas);
+      this.apiRutaEstadoReservacion.get("/getall", estadoReservacionControlador.damelasTodas);
+      this.apiRutaEstadoReservacion.post("/addcito", estadoReservacionControlador.cogeTuEstadoReservacion);
 
     }
 
