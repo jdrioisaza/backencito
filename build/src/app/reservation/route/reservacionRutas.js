@@ -12,6 +12,7 @@ class ReservacionRutas {
     }
     misRutas() {
         this.apiRutaReservacion.get("/getall", reservacionControlador_1.default.damelasTodas);
+        this.apiRutaReservacion.post("/addcito", reservacionControlador_1.default.cogeTuReservacion);
     }
 }
 const reservacionRutas = new ReservacionRutas;

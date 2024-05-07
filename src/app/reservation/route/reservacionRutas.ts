@@ -15,7 +15,7 @@ class ReservacionRutas {
     private misRutas():void {
 
         this.apiRutaReservacion.get("/getall", reservacionControlador.damelasTodas);
-
+        this.apiRutaReservacion.post("/addcito", reservacionControlador.cogeTuReservacion);
     }
 
 }

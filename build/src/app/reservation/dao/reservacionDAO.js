@@ -28,5 +28,50 @@ class ReservacionDAO {
             });
         });
     }
+    static agregar(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 0;
+                let reservationYeah;
+                const person = yield consulta.one(reservacion_sql_1.SQL_RESERVACION.HOW_MANY_PERSON, [
+                    datos.idTitularReservacion,
+                ]);
+                const person2 = yield consulta.one(reservacion_sql_1.SQL_RESERVACION.HOW_MANY_PERSON, [
+                    datos.idGestorReservacion,
+                ]);
+                const room = yield consulta.one(reservacion_sql_1.SQL_RESERVACION.HOW_MANY_ROOM, [
+                    datos.idCubiculoReservacion,
+                ]);
+                if (person.existe == 1 && person2.existe == 1 && room.existe == 1) {
+                    queHacer = 1;
+                    const reservationYeah = yield consulta.one(reservacion_sql_1.SQL_RESERVACION.ADD, [
+                        datos.idTitularReservacion,
+                        datos.idGestorReservacion,
+                        datos.idCubiculoReservacion,
+                        datos.fechaReservacion,
+                        datos.horaInicioReservacion,
+                        datos.horaFinReservacion,
+                    ]);
+                    return { queHacer, reservationYeah };
+                }
+                return { queHacer, reservationYeah };
+            }))
+                .then(({ queHacer, reservationYeah }) => {
+                switch (queHacer) {
+                    case 0:
+                        res.status(400).json({ respuesta: "Ya existe" });
+                        break;
+                    default:
+                        res.status(200).json(reservationYeah);
+                        break;
+                }
+            })
+                .catch((miError) => {
+                console.log(miError);
+                res.status(400).json({ respuesta: "hayun error" });
+            });
+        });
+    }
 }
 exports.default = ReservacionDAO;

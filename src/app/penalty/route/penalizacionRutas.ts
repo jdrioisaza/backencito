@@ -15,6 +15,7 @@ class PenalizacionRutas {
     private misRutas():void {
 
         this.apiRutaPenalizacion.get("/getall", penalizacionControlador.damelasTodas);
+        this.apiRutaPenalizacion.post("/addcito", penalizacionControlador.cogeTuPenalizacion);
 
     }
 
