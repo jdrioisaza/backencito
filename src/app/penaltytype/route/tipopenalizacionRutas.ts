@@ -16,6 +16,8 @@ class TipoPenalizacionRutas {
 
         this.apiRutaTipoPenalizacion.get("/getall", tipoPenalizacionControlador.damelasTodas);
         this.apiRutaTipoPenalizacion.post("/addcito", tipoPenalizacionControlador.cogeTuTPenalizacion);
+        this.apiRutaTipoPenalizacion.delete("/delete/:idTipoPenalizacion", tipoPenalizacionControlador.borraTuTPenalizacion);
+        this.apiRutaTipoPenalizacion.put("/update", tipoPenalizacionControlador.actualiceTuTPenalizacion);
 
     }
 
