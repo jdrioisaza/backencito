@@ -1,6 +1,7 @@
 import { Response } from "express";
 import pool from "../../../config/connection/dbConnection";
 import { SQL_RESERVACION } from "../repository/reservacion_sql";
+import Reservacion from "../entity/reservacion";
 
 class ReservacionDAO {
     protected static async obtenerTodos(
@@ -18,7 +19,7 @@ class ReservacionDAO {
         });
     }
 
-    protected static async agregar(datos: any, res: Response): Promise<any> {
+    protected static async agregar(datos: Reservacion, res: Response): Promise<any> {
       await pool
         .task(async (consulta) => {
           let queHacer = 0;
@@ -34,22 +35,21 @@ class ReservacionDAO {
           ]);
           if(person.existe == 1 && person2.existe == 1 && room.existe == 1){
             queHacer = 1;
-            const reservationYeah = await consulta.one(SQL_RESERVACION.ADD, [
+            reservationYeah = await consulta.one(SQL_RESERVACION.ADD, [
               datos.idTitularReservacion,
               datos.idGestorReservacion,
               datos.idCubiculoReservacion,
               datos.fechaReservacion,
               datos.horaInicioReservacion,
               datos.horaFinReservacion,
-            ]); 
-            return { queHacer, reservationYeah};         
+            ]);       
           }
-          return { queHacer, reservationYeah};
+          return { queHacer, reservationYeah };
         })
         .then(({ queHacer, reservationYeah }) => {
           switch (queHacer) {
             case 0:
-              res.status(400).json({ respuesta: "Ya existe" });
+              res.status(400).json({ respuesta: "Error" });
               break;
             default:
               res.status(200).json(reservationYeah);

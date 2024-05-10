@@ -5,10 +5,10 @@ class Reservacion {
     public idGestorReservacion: number;
     public idCubiculoReservacion: number;
     public fechaReservacion: Date;
-    public horaInicioReservacion: Date;
-    public horaFinReservacion: Date;
+    public horaInicioReservacion: string;
+    public horaFinReservacion: string;
 
-    constructor(idreservacion: number, idtitular: number, idgestor: number, idcubiculo: number, fechareservacion: Date, horaireservacion: Date, horafreservacion: Date) {
+    constructor(idreservacion: number, idtitular: number, idgestor: number, idcubiculo: number, fechareservacion: Date, horaireservacion: string, horafreservacion: string) {
 
         this.idReservacion = idreservacion;
         this.idTitularReservacion = idtitular;
@@ -21,3 +21,5 @@ class Reservacion {
     }
 
 }
+
+export default Reservacion;
