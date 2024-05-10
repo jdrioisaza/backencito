@@ -72,6 +72,53 @@ class PersonaDAO {
         res.status(400).json({ respuesta: "se totio" });
       });
   }
+  
+  protected static async borreloYa(datos: Persona, res: Response): Promise<any> {
+    pool.task((consulta) => {
+      return consulta.result(SQL_PERSONA.DELETE, [datos.idPersona]);
+    })
+      .then((respuesta) => {
+        res.status(200).json({ respuesta: "Borrado :)", info: respuesta.rowCount });
+      });
+  }
+
+  protected static async actualiceloYa(datos: Persona, res: Response): Promise<any> {
+    pool.task(async (consulta) => {
+      let queHacer = 0;
+      let persoYeah;
+      const perso = await consulta.one(SQL_PERSONA.HOW_MANY2, [
+        datos.correoElectronicoPersona,
+        datos.idPersona,
+      ]);
+
+      if (perso.existe == 0) {
+        queHacer = 1;
+        await consulta.none(SQL_PERSONA.UPDATE, [
+          datos.idRolPersona,
+          datos.primerNombrePersona,
+          datos.segundoNombrePersona,
+          datos.primerApellidoPersona,
+          datos.segundoApellidoPersona,
+          datos.correoElectronicoPersona,
+          datos.clavePersona,
+          datos.idPersona,
+        ]);
+      }
+      return queHacer;
+    })
+      .then((queHacer) => {
+        switch (queHacer) {
+          case 0:
+            res.status(400).json({ respuesta: "Ya existe" });
+          case 1:
+            res.status(200).json(datos);
+      }
+      })
+      .catch((myError: any) => {
+        console.log(myError);
+        res.status(400).json({ respuesta: "Pailas, no se actualizó" });
+      });
+  }
 }
 
 export default PersonaDAO;
