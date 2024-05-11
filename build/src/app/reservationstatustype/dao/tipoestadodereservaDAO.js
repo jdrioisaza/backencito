@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbConnection_1 = __importDefault(require("../../../config/connection/dbConnection"));
 const tipoestadodereserva_sql_1 = require("../repository/tipoestadodereserva_sql");
+const estadoreservacion_sql_1 = require("../../reservationstatus/repository/estadoreservacion_sql");
 class TipoEstadoReservacionDAO {
     static obtenerTodos(params, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -59,6 +60,58 @@ class TipoEstadoReservacionDAO {
                 .catch((miError) => {
                 console.log(miError);
                 res.status(400).json({ respuesta: "se totio" });
+            });
+        });
+    }
+    static borreloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            dbConnection_1.default
+                .task((consulta) => {
+                consulta.none(estadoreservacion_sql_1.SQL_ESTADO_RESERVA.DELETE_BY_TER, [datos.id_tipo_estado_reservacion]);
+                return consulta.result(tipoestadodereserva_sql_1.SQL_TIPO_ESTADO_RESERVA.DELETE, [datos.id_tipo_estado_reservacion]);
+            })
+                .then((respuesta) => {
+                res
+                    .status(200)
+                    .json({ respuesta: "Borrado :)", info: respuesta.rowCount });
+            })
+                .catch((myError) => {
+                console.log(myError);
+                res.status(400).json({ respuesta: "Pailas, sql totiado" });
+            });
+        });
+    }
+    static actualiceloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 0;
+                const tereserva = yield consulta.one(tipoestadodereserva_sql_1.SQL_TIPO_ESTADO_RESERVA.HOW_MANY2, [
+                    datos.nombre_tipo_estado_reservacion,
+                    datos.id_tipo_estado_reservacion,
+                ]);
+                if (tereserva.existe == 0) {
+                    queHacer = 1;
+                    yield consulta.none(tipoestadodereserva_sql_1.SQL_TIPO_ESTADO_RESERVA.UPDATE, [
+                        datos.nombre_tipo_estado_reservacion,
+                        datos.descripcion_tipo_estado_reservacion,
+                        datos.id_tipo_estado_reservacion,
+                    ]);
+                }
+                return queHacer;
+            }))
+                .then((queHacer) => {
+                switch (queHacer) {
+                    case 0:
+                        res.status(400).json({ respuesta: "ya existe un tipo de estado de reservación con ese nombre" });
+                        return;
+                    case 1:
+                        res.status(200).json(datos);
+                }
+            })
+                .catch((myError) => {
+                console.log(myError);
+                res.status(400).json({ respuesta: "Pailas, no se actualizó" });
             });
         });
     }

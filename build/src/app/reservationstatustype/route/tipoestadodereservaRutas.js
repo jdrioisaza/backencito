@@ -13,6 +13,8 @@ class TipoEstadoReservacionRutas {
     misRutas() {
         this.apiRutaTipoEstadoReservacion.get("/getall", tipoestadodereservaControlador_1.default.damelasTodas);
         this.apiRutaTipoEstadoReservacion.post("/addcito", tipoestadodereservaControlador_1.default.cogeTuTEReservacion);
+        this.apiRutaTipoEstadoReservacion.delete("/delete/:idTipoEstadoReservacion", tipoestadodereservaControlador_1.default.borraTuTEReservacion);
+        this.apiRutaTipoEstadoReservacion.put("/actualizalo", tipoestadodereservaControlador_1.default.actualiceTEReservacion);
     }
 }
 const tipoEstadoReservacionRutas = new TipoEstadoReservacionRutas;
