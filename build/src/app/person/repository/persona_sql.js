@@ -12,6 +12,7 @@ exports.SQL_PERSONA = {
     HOW_MANY2: "SELECT COUNT(id_persona) as existe FROM personas \
     WHERE correo_electronico_persona = $1 AND id_persona != $2",
     DELETE: "DELETE FROM personas WHERE id_persona = $1",
+    DELETE_BY_ROLE: "DELETE FROM personas WHERE id_rol_persona = $1",
     UPDATE: "UPDATE personas SET id_rol_persona = $1, primer_nombre_persona = $2, segundo_nombre_persona = $3, \
     primer_apellido_persona = $4, segundo_apellido_persona = $5, correo_electronico_persona = $6, clave_persona = $7 \
     WHERE id_persona = $8"

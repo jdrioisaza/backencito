@@ -15,6 +15,8 @@ export const SQL_PERSONA = {
 
     DELETE: "DELETE FROM personas WHERE id_persona = $1",
     
+    DELETE_BY_ROLE: "DELETE FROM personas WHERE id_rol_persona = $1",
+    
     UPDATE: "UPDATE personas SET id_rol_persona = $1, primer_nombre_persona = $2, segundo_nombre_persona = $3, \
     primer_apellido_persona = $4, segundo_apellido_persona = $5, correo_electronico_persona = $6, clave_persona = $7 \
     WHERE id_persona = $8"

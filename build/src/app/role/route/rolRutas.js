@@ -13,6 +13,8 @@ class RolRutas {
     misRutas() {
         this.apiRutaRol.get("/getall", rolControlador_1.default.damelasTodas);
         this.apiRutaRol.post("/addcito", rolControlador_1.default.cogeTuRol);
+        this.apiRutaRol.delete("/delete/:idRol", rolControlador_1.default.borraTuRol);
+        this.apiRutaRol.put("/actualizalo", rolControlador_1.default.actualiceTuRol);
     }
 }
 const rolRutas = new RolRutas;

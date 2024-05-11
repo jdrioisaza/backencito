@@ -16,6 +16,8 @@ class RolRutas {
 
         this.apiRutaRol.get("/getall", rolControlador.damelasTodas);
         this.apiRutaRol.post("/addcito", rolControlador.cogeTuRol);
+        this.apiRutaRol.delete("/delete/:idRol", rolControlador.borraTuRol);
+        this.apiRutaRol.put("/actualizalo", rolControlador.actualiceTuRol);
 
     }
 

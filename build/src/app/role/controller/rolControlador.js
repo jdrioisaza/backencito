@@ -15,6 +15,28 @@ class RolControlador extends rolDAO_1.default {
         objRol.descripcionRol = req.body.descripcionRol;
         rolDAO_1.default.grabeloYa(objRol, res);
     }
+    borraTuRol(req, res) {
+        if (isNaN(Number(req.params.idRol))) {
+            res.status(400).json({ respuesta: "Y el codigo my vale?" });
+        }
+        else {
+            const codigito = Number(req.params.idRol);
+            const objRol = new rol_1.default(codigito, "0", "0");
+            rolDAO_1.default.borreloYa(objRol, res);
+        }
+    }
+    actualiceTuRol(req, res) {
+        if (isNaN(Number(req.body.idRol))) {
+            res.status(400).json({ respuesta: "Y el codigo my vale?" });
+        }
+        else {
+            const objRol = new rol_1.default(0, "0", "0");
+            objRol.idRol = Number(req.body.idRol);
+            objRol.nombreRol = req.body.nombreRol;
+            objRol.descripcionRol = req.body.descripcionRol;
+            rolDAO_1.default.actualiceloYa(objRol, res);
+        }
+    }
 }
 const rolControlador = new RolControlador();
 exports.default = rolControlador;
