@@ -12,6 +12,7 @@ class EstadoReservacionRutas {
     }
     misRutas() {
         this.apiRutaEstadoReservacion.get("/getall", estadoreservacionControlador_1.default.damelasTodas);
+        this.apiRutaEstadoReservacion.post("/addcito", estadoreservacionControlador_1.default.cogeTuEstadoReservacion);
     }
 }
 const estadoReservacionRutas = new EstadoReservacionRutas;

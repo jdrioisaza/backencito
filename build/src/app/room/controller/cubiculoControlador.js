@@ -15,6 +15,28 @@ class CubiculoControlador extends cubiculoDAO_1.default {
         objCubi.capacidadMaximaCubiculo = req.body.capacidadMaximaCubiculo;
         cubiculoDAO_1.default.grabeloYa(objCubi, res);
     }
+    borraTuCubiculo(req, res) {
+        if (isNaN(Number(req.params.idCubiculo))) {
+            res.status(400).json({ respuesta: "Y el codigo my vale?" });
+        }
+        else {
+            const codigito = Number(req.params.idCubiculo);
+            const objCubi = new cubiculo_1.default(codigito, 0, 0, "0");
+            cubiculoDAO_1.default.borreloYa(objCubi, res);
+        }
+    }
+    actualiceTuCubiculo(req, res) {
+        if (isNaN(Number(req.body.idCubiculo))) {
+            res.status(400).json({ respuesta: "Y el codigo my vale?" });
+        }
+        else {
+            const objCubi = new cubiculo_1.default(0, 0, 0, "0");
+            objCubi.idCubiculo = Number(req.body.idCubiculo);
+            objCubi.numeroCubiculo = Number(req.body.numeroCubiculo);
+            objCubi.capacidadMaximaCubiculo = Number(req.body.capacidadMaximaCubiculo);
+            cubiculoDAO_1.default.actualiceloYa(objCubi, res);
+        }
+    }
 }
 const cubiculoControlador = new CubiculoControlador();
 exports.default = cubiculoControlador;

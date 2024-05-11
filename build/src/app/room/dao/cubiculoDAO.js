@@ -62,5 +62,56 @@ class CubiculoDAO {
             });
         });
     }
+    static borreloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            dbConnection_1.default
+                .task((consulta) => {
+                return consulta.result(cubiculo_sql_1.SQL_CUBICULO.DELETE, [datos.idCubiculo]);
+            })
+                .then((respuesta) => {
+                res
+                    .status(200)
+                    .json({ respuesta: "Borrado :)", info: respuesta.rowCount });
+            })
+                .catch((myError) => {
+                console.log(myError);
+                res.status(400).json({ respuesta: "Pailas, sql totiado" });
+            });
+        });
+    }
+    static actualiceloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 0;
+                let cubiYeah;
+                const cubi = yield consulta.one(cubiculo_sql_1.SQL_CUBICULO.HOW_MANY2, [
+                    datos.numeroCubiculo,
+                    datos.idCubiculo,
+                ]);
+                if (cubi.existe == 0) {
+                    queHacer = 1;
+                    yield consulta.none(cubiculo_sql_1.SQL_CUBICULO.UPDATE, [
+                        datos.numeroCubiculo,
+                        datos.capacidadMaximaCubiculo,
+                        datos.idCubiculo,
+                    ]);
+                }
+                return queHacer;
+            }))
+                .then((queHacer) => {
+                switch (queHacer) {
+                    case 0:
+                        res.status(400).json({ respuesta: "Ya existe" });
+                    case 1:
+                        res.status(200).json(datos);
+                }
+            })
+                .catch((myError) => {
+                console.log(myError);
+                res.status(400).json({ respuesta: "Pailas, no se actualizó" });
+            });
+        });
+    }
 }
 exports.default = CubiculoDAO;

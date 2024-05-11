@@ -44,9 +44,7 @@ class TipoPenalizacionDAO {
                 .then(({ queHacer, tpenalizacionYeah }) => {
                 switch (queHacer) {
                     case 1:
-                        res
-                            .status(400)
-                            .json({
+                        res.status(400).json({
                             respuesta: "ya existe un tipo de penalización con ese nombre",
                         });
                         break;
@@ -58,6 +56,57 @@ class TipoPenalizacionDAO {
                 .catch((miError) => {
                 console.log(miError);
                 res.status(400).json({ respuesta: "se totio" });
+            });
+        });
+    }
+    static borreloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            dbConnection_1.default
+                .task((consulta) => {
+                return consulta.result(tipopenalizacion_sql_1.SQL_TIPO_PENALIZACION.DELETE, [datos.idTipoPenalizacion]);
+            })
+                .then((respuesta) => {
+                res
+                    .status(200)
+                    .json({ respuesta: "Borrado :)", info: respuesta.rowCount });
+            })
+                .catch((myError) => {
+                console.log(myError);
+                res.status(400).json({ respuesta: "Pailas, sql totiado" });
+            });
+        });
+    }
+    static actualiceloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 0;
+                let tpenalizacionYeah;
+                const cubi = yield consulta.one(tipopenalizacion_sql_1.SQL_TIPO_PENALIZACION.HOW_MANY2, [
+                    datos.nombreTipoPenalizacion,
+                    datos.idTipoPenalizacion,
+                ]);
+                if (cubi.existe == 0) {
+                    queHacer = 1;
+                    yield consulta.none(tipopenalizacion_sql_1.SQL_TIPO_PENALIZACION.UPDATE, [
+                        datos.nombreTipoPenalizacion,
+                        datos.descripcionTipoPenalizacion,
+                        datos.idTipoPenalizacion,
+                    ]);
+                }
+                return queHacer;
+            }))
+                .then((queHacer) => {
+                switch (queHacer) {
+                    case 0:
+                        res.status(400).json({ respuesta: "Ya existe" });
+                    case 1:
+                        res.status(200).json(datos);
+                }
+            })
+                .catch((myError) => {
+                console.log(myError);
+                res.status(400).json({ respuesta: "Pailas, no se actualizó" });
             });
         });
     }

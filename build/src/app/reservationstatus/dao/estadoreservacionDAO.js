@@ -28,5 +28,39 @@ class EstadoReservacionDAO {
             });
         });
     }
+    static grabeloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 1;
+                let estResYeah;
+                const cubi = yield consulta.one(estadoreservacion_sql_1.SQL_ESTADO_RESERVA.HOW_MANY, [
+                    datos.idTipoEstadoReservacion,
+                ]);
+                if (cubi.existe == 0) {
+                    queHacer = 2;
+                    const cubiYeah = yield consulta.one(estadoreservacion_sql_1.SQL_ESTADO_RESERVA.ADD, [
+                        datos.idReservacionEstadoReservacion,
+                        datos.idTipoEstadoReservacion,
+                    ]);
+                }
+                return { queHacer, estResYeah };
+            }))
+                .then(({ queHacer, estResYeah }) => {
+                switch (queHacer) {
+                    case 1:
+                        res.status(400).json({ respuesta: "ya existe" });
+                        break;
+                    default:
+                        res.status(200).json(estResYeah);
+                        break;
+                }
+            })
+                .catch((miError) => {
+                console.log(miError);
+                res.status(400).json({ respuesta: "se totio" });
+            });
+        });
+    }
 }
 exports.default = EstadoReservacionDAO;

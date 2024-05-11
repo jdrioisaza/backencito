@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Penalizacion {
     constructor(idpenalizacion, idpersonap, idreservacionp, idtipop, fechainiciop, fechafinp, horainiciop, horafinp) {
         this.idPenalizacion = idpenalizacion;
@@ -11,3 +12,4 @@ class Penalizacion {
         this.horaFinPenalizacion = horafinp;
     }
 }
+exports.default = Penalizacion;

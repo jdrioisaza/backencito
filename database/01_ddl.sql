@@ -15,7 +15,6 @@ CREATE TABLE tipos_estados_penalizaciones (
 
 );
 
-/*X*/
 CREATE TABLE roles (
 
     id_rol SERIAL NOT NULL PRIMARY KEY,
@@ -50,7 +49,6 @@ CREATE TABLE tipos_penalizaciones (
 
 );
 
-/*X*/
 CREATE TABLE tipos_estados_reservaciones (
 
     id_tipo_estado_reservacion SERIAL NOT NULL PRIMARY KEY,

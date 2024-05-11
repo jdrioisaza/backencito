@@ -15,6 +15,28 @@ class TipoEstadoPenalizacionControlador extends tipoestadopenalizacionDAO_1.defa
         objTipoEstadoPenalizacion.descripcionTipoEstadoPenalizacion = req.body.descripcionTipoEstadoPenalizacion;
         tipoestadopenalizacionDAO_1.default.grabeloYa(objTipoEstadoPenalizacion, res);
     }
+    borraTuTEPenalizacion(req, res) {
+        if (isNaN(Number(req.params.idTipoEstadoPenalizacion))) {
+            res.status(400).json({ respuesta: "Y el codigo my vale?" });
+        }
+        else {
+            const codigito = Number(req.params.idTipoEstadoPenalizacion);
+            const objTipoEstadoPenalizacion = new tipoestadopenalizacion_1.default(codigito, "0", "0");
+            tipoestadopenalizacionDAO_1.default.borreloYa(objTipoEstadoPenalizacion, res);
+        }
+    }
+    actualiceTuTEPenalizacion(req, res) {
+        if (isNaN(Number(req.body.idTipoEstadoPenalizacion))) {
+            res.status(400).json({ respuesta: "Y el codigo my vale?" });
+        }
+        else {
+            const objTipoEstadoPenalizacion = new tipoestadopenalizacion_1.default(0, "0", "0");
+            objTipoEstadoPenalizacion.idTipoEstadoPenalizacion = Number(req.body.idTipoEstadoPenalizacion);
+            objTipoEstadoPenalizacion.nombreTipoEstadoPenalizacion = req.body.nombreTipoEstadoPenalizacion;
+            objTipoEstadoPenalizacion.descripcionTipoEstadoPenalizacion = req.body.descripcionTipoEstadoPenalizacion;
+            tipoestadopenalizacionDAO_1.default.actualiceloYa(objTipoEstadoPenalizacion, res);
+        }
+    }
 }
 const tipoEstadoPenalizacionControlador = new TipoEstadoPenalizacionControlador();
 exports.default = tipoEstadoPenalizacionControlador;

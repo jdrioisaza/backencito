@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Reservacion {
     constructor(idreservacion, idtitular, idgestor, idcubiculo, fechareservacion, horaireservacion, horafreservacion) {
         this.idReservacion = idreservacion;
@@ -10,3 +11,4 @@ class Reservacion {
         this.horaFinReservacion = horafreservacion;
     }
 }
+exports.default = Reservacion;

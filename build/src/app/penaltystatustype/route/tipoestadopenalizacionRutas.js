@@ -13,6 +13,8 @@ class TipoEstadoPenalizacionRutas {
     misRutas() {
         this.apiRutaTipoEstadoPenalizacion.get("/getall", tipoestadopenalizacionControlador_1.default.damelasTodas);
         this.apiRutaTipoEstadoPenalizacion.post("/addcito", tipoestadopenalizacionControlador_1.default.cogeTuTEPenalizacion);
+        this.apiRutaTipoEstadoPenalizacion.delete("/delete/:idTipoEstadoPenalizacion", tipoestadopenalizacionControlador_1.default.borraTuTEPenalizacion);
+        this.apiRutaTipoEstadoPenalizacion.put("/actualizalo", tipoestadopenalizacionControlador_1.default.actualiceTuTEPenalizacion);
     }
 }
 const tipoEstadoPenalizacionRutas = new TipoEstadoPenalizacionRutas;

@@ -24,7 +24,41 @@ class EstadoPenalizacionDAO {
             })
                 .catch((miError) => {
                 console.log(miError);
-                res.status(400).json({ respuesta: "Hay un erro" });
+                res.status(400).json({ respuesta: "Hay un error" });
+            });
+        });
+    }
+    static grabeloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 1;
+                let espenalizacionYeah;
+                const espenalizacion = yield consulta.one(estadopenalizacion_sql_1.SQL_ESTADO_PENALIZACION.HOW_MANY, [
+                    datos.idTipoEstadoPenalizacion,
+                ]);
+                if (espenalizacion.existe == 0) {
+                    queHacer = 2;
+                    const espenalizacionYeah = yield consulta.one(estadopenalizacion_sql_1.SQL_ESTADO_PENALIZACION.ADD, [
+                        datos.idTipoEstadoPenalizacion,
+                        datos.idPenalizacion,
+                    ]);
+                }
+                return { queHacer, espenalizacionYeah };
+            }))
+                .then(({ queHacer, espenalizacionYeah }) => {
+                switch (queHacer) {
+                    case 1:
+                        res.status(400).json({ respuesta: "Ya existe" });
+                        break;
+                    default:
+                        res.status(200).json(espenalizacionYeah);
+                        break;
+                }
+            })
+                .catch((miError) => {
+                console.log(miError);
+                res.status(400).json({ respuesta: "Se jodio esta vaina" });
             });
         });
     }

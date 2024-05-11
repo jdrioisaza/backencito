@@ -9,4 +9,9 @@ exports.SQL_TIPO_ESTADO_PENALIZACION = {
     VALUES ($1, $2) RETURNING id_tipo_estado_penalizacion",
     HOW_MANY: "SELECT COUNT(id_tipo_estado_penalizacion) as existe FROM tipos_estados_penalizaciones \
     WHERE nombre_tipo_estado_penalizacion = $1",
+    HOW_MANY2: "SELECT COUNT(id_tipo_estado_penalizacion) as existe FROM tipos_estados_penalizaciones \
+    WHERE nombre_tipo_estado_penalizacion = $1 AND id_tipo_estado_penalizacion != $2",
+    DELETE: "DELETE FROM tipos_estados_penalizaciones WHERE id_tipo_estado_penalizacion = $1",
+    UPDATE: "UPDATE tipos_estados_penalizaciones SET nombre_tipo_estado_penalizacion = $1, descripcion_tipo_estado_penalizacion = $2 \
+    WHERE id_tipo_estado_penalizacion = $3"
 };

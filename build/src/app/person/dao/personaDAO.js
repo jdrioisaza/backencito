@@ -80,5 +80,53 @@ class PersonaDAO {
             });
         });
     }
+    static borreloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            dbConnection_1.default.task((consulta) => {
+                return consulta.result(persona_sql_1.SQL_PERSONA.DELETE, [datos.idPersona]);
+            })
+                .then((respuesta) => {
+                res.status(200).json({ respuesta: "Borrado :)", info: respuesta.rowCount });
+            });
+        });
+    }
+    static actualiceloYa(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            dbConnection_1.default.task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                let queHacer = 0;
+                let persoYeah;
+                const perso = yield consulta.one(persona_sql_1.SQL_PERSONA.HOW_MANY2, [
+                    datos.correoElectronicoPersona,
+                    datos.idPersona,
+                ]);
+                if (perso.existe == 0) {
+                    queHacer = 1;
+                    yield consulta.none(persona_sql_1.SQL_PERSONA.UPDATE, [
+                        datos.idRolPersona,
+                        datos.primerNombrePersona,
+                        datos.segundoNombrePersona,
+                        datos.primerApellidoPersona,
+                        datos.segundoApellidoPersona,
+                        datos.correoElectronicoPersona,
+                        datos.clavePersona,
+                        datos.idPersona,
+                    ]);
+                }
+                return queHacer;
+            }))
+                .then((queHacer) => {
+                switch (queHacer) {
+                    case 0:
+                        res.status(400).json({ respuesta: "Ya existe" });
+                    case 1:
+                        res.status(200).json(datos);
+                }
+            })
+                .catch((myError) => {
+                console.log(myError);
+                res.status(400).json({ respuesta: "Pailas, no se actualizó" });
+            });
+        });
+    }
 }
 exports.default = PersonaDAO;

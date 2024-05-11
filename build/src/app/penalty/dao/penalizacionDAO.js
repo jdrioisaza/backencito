@@ -35,7 +35,7 @@ class PenalizacionDAO {
                 let queHacer = 0;
                 let penaltyYeah;
                 const person = yield consulta.one(penalizacion_sql_1.SQL_PENALIZACION.HOW_MANY_PERSON, [
-                    datos.idPersonaPenaliacion,
+                    datos.idPersonaPenalizacion,
                 ]);
                 const reservation = yield consulta.one(penalizacion_sql_1.SQL_PENALIZACION.HOW_MANY_RESERVATION, [
                     datos.idReservacionPenalizacion,
@@ -45,8 +45,8 @@ class PenalizacionDAO {
                 ]);
                 if (person.existe == 1 && reservation.existe == 1 && typePenalty.existe == 1) {
                     queHacer = 1;
-                    const penaltyYeah = yield consulta.one(penalizacion_sql_1.SQL_PENALIZACION.ADD, [
-                        datos.idPersonaPenaliacion,
+                    penaltyYeah = yield consulta.one(penalizacion_sql_1.SQL_PENALIZACION.ADD, [
+                        datos.idPersonaPenalizacion,
                         datos.idReservacionPenalizacion,
                         datos.idTipoPenalizacion,
                         datos.fechaInicioPenalizacion,

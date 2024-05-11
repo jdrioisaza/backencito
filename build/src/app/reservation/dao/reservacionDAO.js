@@ -45,7 +45,7 @@ class ReservacionDAO {
                 ]);
                 if (person.existe == 1 && person2.existe == 1 && room.existe == 1) {
                     queHacer = 1;
-                    const reservationYeah = yield consulta.one(reservacion_sql_1.SQL_RESERVACION.ADD, [
+                    reservationYeah = yield consulta.one(reservacion_sql_1.SQL_RESERVACION.ADD, [
                         datos.idTitularReservacion,
                         datos.idGestorReservacion,
                         datos.idCubiculoReservacion,
@@ -53,14 +53,13 @@ class ReservacionDAO {
                         datos.horaInicioReservacion,
                         datos.horaFinReservacion,
                     ]);
-                    return { queHacer, reservationYeah };
                 }
                 return { queHacer, reservationYeah };
             }))
                 .then(({ queHacer, reservationYeah }) => {
                 switch (queHacer) {
                     case 0:
-                        res.status(400).json({ respuesta: "Ya existe" });
+                        res.status(400).json({ respuesta: "Error" });
                         break;
                     default:
                         res.status(200).json(reservationYeah);

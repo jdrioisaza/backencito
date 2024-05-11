@@ -1,8 +1,10 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Estadoreservacion {
-    constructor(id_estado_reservacion, id_tipo_estado_reservacion, id_reservacion_estado_reservacion) {
-        this.id_estado_reservacion = id_estado_reservacion;
-        this.id_tipo_estado_reservacion = id_tipo_estado_reservacion;
-        this.id_reservacion_estado_reservacion = id_reservacion_estado_reservacion;
+    constructor(id, idtipestres, idresestadores) {
+        this.idEstadoReservacion = id;
+        this.idTipoEstadoReservacion = idtipestres;
+        this.idReservacionEstadoReservacion = idresestadores;
     }
 }
+exports.default = Estadoreservacion;
