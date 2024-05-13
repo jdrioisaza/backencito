@@ -18,4 +18,7 @@ export const SQL_PENALIZACION = {
     DELETE: "DELETE FROM penalizaciones WHERE id_penalizacion = $1",
 
     DELETE_BY_RESERVATION:"DELETE FROM penalizaciones WHERE id_reservacion_penalizacion = $1",
+
+    UPDATE:"UPDATE penalizaciones SET id_persona_penalizacion = $1, id_reservacion_penalizacion = $2, id_tipo_penalizacion = $3, fecha_inicio_penalizacion = $4, fecha_fin_penalizacion = $5, hora_inicio_penalizacion = $6, hora_fin_penalizacion = $7 \
+    WHERE id_penalizacion = $8"
 }

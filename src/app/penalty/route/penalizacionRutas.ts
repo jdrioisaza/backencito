@@ -16,7 +16,9 @@ class PenalizacionRutas {
 
         this.apiRutaPenalizacion.get("/getall", penalizacionControlador.damelasTodas);
         this.apiRutaPenalizacion.post("/addcito", penalizacionControlador.cogeTuPenalizacion);
-
+        this.apiRutaPenalizacion.put("/update", penalizacionControlador.actualizaTuPenalizacion);
+        this.apiRutaPenalizacion.delete("/delete/:idPenalizacion", penalizacionControlador.borraTuPenalizacion);
+penalizacionControlador
     }
 
 }
