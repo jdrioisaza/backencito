@@ -74,7 +74,7 @@ class ReservacionDAO {
   ): Promise<any> {
     await pool
       .task(async (consulta) => {       
-        const penalty = await consulta.one(SQL_PENALIZACION.GET_PENALTY_BY_RESERVATION, idReservacion);
+        const penalty = await consulta.query(SQL_PENALIZACION.GET_PENALTY_BY_RESERVATION, idReservacion);
         consulta.query(SQL_ESTADO_PENALIZACION.DELETE_BY_PENALTY, [penalty.idpenal]);
         consulta.query(SQL_PENALIZACION.DELETE_BY_RESERVATION, idReservacion);
         consulta.query(SQL_ESTADO_RESERVA.DELETE_BY_RESERVATION, idReservacion);
