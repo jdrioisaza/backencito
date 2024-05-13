@@ -18,6 +18,15 @@ class ReservacionControlador extends ReservacionDAO {
         objReservacion.horaFinReservacion = req.body.horaFinReservacion;
         ReservacionDAO.agregar(objReservacion, res);
     }
+
+    public borraTuReservacion(req: Request, res: Response): void {
+        if (isNaN(Number(req.params.idReservacion))) {
+            res.status(400).json({ respuesta: "Y el codigo my vale?" });
+          } else {
+            const codigito = Number(req.params.idReservacion);
+            ReservacionDAO.eliminar(codigito, res);
+          }
+    }
 }
 
 const reservacionControlador = new ReservacionControlador();

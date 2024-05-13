@@ -9,6 +9,9 @@ export const SQL_ESTADO_PENALIZACION = {
 
     HOW_MANY: "SELECT COUNT(id_estado_penalizacion) as existe FROM estados_penalizaciones \
     WHERE id_tipo_estado_penalizacion = $1",
-
-    DELETE_BY_PST: "DELETE FROM estados_penalizaciones WHERE id_tipo_estado_penalizacion = $1", 
+    
+    
+    DELETE_BY_PST: "DELETE FROM estados_penalizaciones WHERE id_tipo_estado_penalizacion = $1",
+    
+    DELETE_BY_PENALTY: "DELETE FROM estados_penalizaciones WHERE id_penalizacion_estado_penalizacion = $1"
 }

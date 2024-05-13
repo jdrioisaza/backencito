@@ -11,5 +11,11 @@ export const SQL_PENALIZACION = {
 
     HOW_MANY_RESERVATION: "SELECT COUNT(*) AS existe FROM reservaciones WHERE id_reservacion = $1",
 
-    HOW_MANY_TYPE_PENALTY: "SELECT COUNT(*) AS existe FROM tipos_penalizaciones WHERE id_tipo_penalizacion = $1"
+    GET_PENALTY_BY_RESERVATION: "SELECT id_penalizacion as idPenal FROM penalizaciones WHERE id_reservacion_penalizacion = $1",
+
+    HOW_MANY_TYPE_PENALTY: "SELECT COUNT(*) AS existe FROM tipos_penalizaciones WHERE id_tipo_penalizacion = $1",
+
+    DELETE: "DELETE FROM penalizaciones WHERE id_penalizacion = $1",
+
+    DELETE_BY_RESERVATION:"DELETE FROM penalizaciones WHERE id_reservacion_penalizacion = $1",
 }
