@@ -16,6 +16,7 @@ class ReservacionRutas {
 
         this.apiRutaReservacion.get("/getall", reservacionControlador.damelasTodas);
         this.apiRutaReservacion.post("/addcito", reservacionControlador.cogeTuReservacion);
+        this.apiRutaReservacion.put("/update", reservacionControlador.actualizaTuReservacion);
         this.apiRutaReservacion.delete("/delete/:idReservacion", reservacionControlador.borraTuReservacion);
     }
 

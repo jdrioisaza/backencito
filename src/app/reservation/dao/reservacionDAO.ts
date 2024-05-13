@@ -73,21 +73,53 @@ class ReservacionDAO {
     res: Response
   ): Promise<any> {
     await pool
-      .task(async (consulta) => {       
-        const penalty = await consulta.query(SQL_PENALIZACION.GET_PENALTY_BY_RESERVATION, idReservacion);
-        consulta.query(SQL_ESTADO_PENALIZACION.DELETE_BY_PENALTY, [penalty.idpenal]);
+      .task(async (consulta) => {
+        const penalty = await consulta.query(
+          SQL_PENALIZACION.GET_PENALTY_BY_RESERVATION,
+          idReservacion
+        );
+        consulta.query(SQL_ESTADO_PENALIZACION.DELETE_BY_PENALTY, [
+          penalty.idpenal,
+        ]);
         consulta.query(SQL_PENALIZACION.DELETE_BY_RESERVATION, idReservacion);
         consulta.query(SQL_ESTADO_RESERVA.DELETE_BY_RESERVATION, idReservacion);
         return consulta.query(SQL_RESERVACION.DELETE, idReservacion);
-
-        
       })
       .then((respuesta) => {
-        res.status(200).json({ respuesta:"Borrado", info: respuesta.rowCount});
+        res
+          .status(200)
+          .json({ respuesta: "Borrado", info: respuesta.rowCount });
       })
       .catch((error: any) => {
         console.log(error);
         res.status(400).json({ respuesta: "Pailas, sql totiado" });
+      });
+  }
+
+  protected static async actualizar(
+    datos: Reservacion,
+    res: Response
+  ): Promise<any> {
+    await pool
+      .task(async (consulta) => {
+        return await consulta.query(SQL_RESERVACION.UPDATE, [
+          datos.idTitularReservacion,
+          datos.idGestorReservacion,
+          datos.idCubiculoReservacion,
+          datos.fechaReservacion,
+          datos.horaInicioReservacion,
+          datos.horaFinReservacion,
+          datos.idReservacion
+        ]);
+      })
+      .then((respuesta) => {
+        res
+        .status(200)
+        .json({ respuesta: "Actualizado :)", info: respuesta.rowCount});
+      })
+      .catch((error: any) => {
+        console.log(error);
+        res.status(400).json({Respuesta: "sql totiado"})
       });
   }
 }

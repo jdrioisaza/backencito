@@ -15,7 +15,5 @@ export const SQL_RESERVACION = {
 
     DELETE: "DELETE FROM reservaciones WHERE id_reservacion = $1",
 
-    
-
 
 }
