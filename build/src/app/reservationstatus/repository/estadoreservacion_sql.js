@@ -9,5 +9,6 @@ exports.SQL_ESTADO_RESERVA = {
     VALUES ($1, $2) RETURNING id_estado_reservacion",
     HOW_MANY: "SELECT COUNT(id_estado_reservacion) as existe FROM estados_reservaciones \
     WHERE id_reservacion_estado_reservacion = $1",
-    DELETE_BY_TER: "DELETE FROM estados_reservaciones WHERE id_tipo_estado_reservacion = $1"
+    DELETE_BY_TER: "DELETE FROM estados_reservaciones WHERE id_tipo_estado_reservacion = $1",
+    DELETE_BY_RESERVATION: "DELETE FROM estados_reservaciones WHERE id_reservacion_estado_reservacion = $1"
 };

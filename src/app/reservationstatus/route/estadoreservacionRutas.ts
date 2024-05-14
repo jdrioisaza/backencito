@@ -16,6 +16,8 @@ class EstadoReservacionRutas {
 
       this.apiRutaEstadoReservacion.get("/getall", estadoReservacionControlador.damelasTodas);
       this.apiRutaEstadoReservacion.post("/addcito", estadoReservacionControlador.cogeTuEstadoReservacion);
+      this.apiRutaEstadoReservacion.delete("/delete/:idEstadoReservacion", estadoReservacionControlador.borraTuEstadoReservacion);
+        this.apiRutaEstadoReservacion.put("/actualizalo", estadoReservacionControlador.actualiceTuEstadoReservacion);
 
     }
 
