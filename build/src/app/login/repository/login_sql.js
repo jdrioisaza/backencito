@@ -7,6 +7,6 @@ exports.SQL_LOGIN = {
     ORDER BY p.correo_electronico_persona DESC",
     SEARCH_EMAIL: "SELECT COUNT(id_persona) as existe FROM personas \
     WHERE correo_electronico_persona = $1",
-    SEARCH_PASS: "SELECT COUNT(id_persona) as existe FROM personas \
-    WHERE clave_persona = $1",
+    CONF_LOGIN: "SELECT COUNT(id_persona) as conf FROM personas \
+    WHERE correo_electronico_persona = $1 AND clave_persona = $2",
 };

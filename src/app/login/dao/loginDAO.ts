@@ -29,10 +29,10 @@ class LoginDAO {
         if (find.existe != 0) {
           queHacer = 2;
           const LogYeah = await consulta.one(SQL_LOGIN.CONF_LOGIN, [
-            datos.claveLogin,
             datos.correoElectronicoLogin,
+            datos.claveLogin,
           ]);
-          if (LogYeah.existe == 1) {
+          if (LogYeah.conf == 1) {
             queHacer = 3;
           }
         }
@@ -53,7 +53,7 @@ class LoginDAO {
             });
             break;
           default:
-            res.status(200).json(LogYeah);
+            res.status(200).json(datos);
             break;
         }
       })

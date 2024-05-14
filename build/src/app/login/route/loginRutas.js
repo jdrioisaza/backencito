@@ -12,7 +12,7 @@ class LoginRutas {
     }
     misRutas() {
         this.apiRutaLogin.get("/getall", loginControlador_1.default.damelasTodas);
-        this.apiRutaLogin.post("/login", loginControlador_1.default.access);
+        this.apiRutaLogin.post("/ingresar", loginControlador_1.default.access);
     }
 }
 const loginRutas = new LoginRutas;
