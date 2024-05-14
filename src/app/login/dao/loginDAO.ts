@@ -28,10 +28,11 @@ class LoginDAO {
         ]);
         if (find.existe != 0) {
           queHacer = 2;
-          const LogYeah = await consulta.one(SQL_LOGIN.SEARCH_PASS, [
+          const LogYeah = await consulta.one(SQL_LOGIN.CONF_LOGIN, [
             datos.claveLogin,
+            datos.correoElectronicoLogin,
           ]);
-          if (LogYeah.existe != 0) {
+          if (LogYeah.existe == 1) {
             queHacer = 3;
           }
         }
