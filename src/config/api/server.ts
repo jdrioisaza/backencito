@@ -12,6 +12,8 @@ import tipoestadopenalizacionRutas from "../../app/penaltystatustype/route/tipoe
 import tipoEstadoReservacionRutas from "../../app/reservationstatustype/route/tipoestadodereservaRutas";
 import EstadoReservacionRutas from "../../app/reservationstatus/route/estadoreservacionRutas";
 import estadoPenalizacionRutas from "../../app/penaltystatus/route/estadopenalizacionRutas";
+import categoryRutas from "../../app/category/route/routesCategory";
+import  movieRutas from "../../app/movie/route/rutasMovie";
 
 class Server {
 
@@ -31,7 +33,7 @@ class Server {
         this.app.use(cors());
         this.app.use(morgan("dev"));
         this.app.use(express.json({limit: "100mb"}));
-        this.app.use(express.urlencoded({extended: true})); 
+        this.app.use(express.urlencoded({extended: true}));     
 
     }
 
@@ -47,6 +49,8 @@ class Server {
         this.app.use("/reservationstatustype", tipoEstadoReservacionRutas);
         this.app.use("/reservationstatus", EstadoReservacionRutas);
         this.app.use("/penaltystatus", estadoPenalizacionRutas);
+        this.app.use("/category", categoryRutas);
+        this.app.use("/movie", movieRutas);
 
     }
 

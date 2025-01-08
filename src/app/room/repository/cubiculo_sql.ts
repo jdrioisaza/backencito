@@ -2,7 +2,10 @@ export const SQL_CUBICULO = {
 
     GET_ALL: "SELECT c.id_cubiculo, c.numero_cubiculo, c.capacidad_maxima_cubiculo, c.url_imagen_cubiculo \
     FROM cubiculos AS c \
-    ORDER BY c.id_cubiculo DESC",
+    ORDER BY c.id_cubiculo ASC\
+    LIMIT $1 OFFSET $2",
+
+    COUNT:"SELECT COUNT(*) FROM cubiculos",
 
     ADD: "INSERT INTO cubiculos(numero_cubiculo, capacidad_maxima_cubiculo) \
     VALUES ($1, $2) RETURNING id_cubiculo",
@@ -15,6 +18,5 @@ export const SQL_CUBICULO = {
 
     DELETE: "DELETE FROM cubiculos WHERE id_cubiculo = $1", 
  
-    UPDATE: "UPDATE cubiculos SET  numero_cubiculo = $1, capacidad_maxima_cubiculo = $2 \
-    WHERE id_cubiculo = $3"
+    UPDATE: "UPDATE cubiculos SET  numero_cubiculo = $1, capacidad_maxima_cubiculo = $2"
 }

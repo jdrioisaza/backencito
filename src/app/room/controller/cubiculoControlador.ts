@@ -4,9 +4,14 @@ import CubiculoDAO from "../dao/cubiculoDAO";
 
 class CubiculoControlador extends CubiculoDAO {
   public damelasTodas(req: Request, res: Response): void {
-    CubiculoDAO.obtenerTodos([], res);
+    const limit = Number(req.params.limit);
+    const offset = Number(req.params.offset);
+    CubiculoDAO.obtenerTodos([],limit, offset, res);
   }
 
+  public count(req: Request, res: Response): void{
+    CubiculoDAO.contarTodos([], res);
+  }
   public cogeTuCubiculo(req: Request, res: Response): void {
     const objCubi: Cubiculo = new Cubiculo(0, 0, 0, "0");
     objCubi.numeroCubiculo = req.body.numeroCubiculo;

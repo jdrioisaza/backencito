@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbConnection_1 = __importDefault(require("../../../config/connection/dbConnection"));
 const penalizacion_sql_1 = require("../repository/penalizacion_sql");
+const estadopenalizacion_sql_1 = require("../../penaltystatus/repository/estadopenalizacion_sql");
 class PenalizacionDAO {
     static obtenerTodos(params, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -37,13 +38,11 @@ class PenalizacionDAO {
                 const person = yield consulta.one(penalizacion_sql_1.SQL_PENALIZACION.HOW_MANY_PERSON, [
                     datos.idPersonaPenalizacion,
                 ]);
-                const reservation = yield consulta.one(penalizacion_sql_1.SQL_PENALIZACION.HOW_MANY_RESERVATION, [
-                    datos.idReservacionPenalizacion,
-                ]);
-                const typePenalty = yield consulta.one(penalizacion_sql_1.SQL_PENALIZACION.HOW_MANY_TYPE_PENALTY, [
-                    datos.idTipoPenalizacion,
-                ]);
-                if (person.existe == 1 && reservation.existe == 1 && typePenalty.existe == 1) {
+                const reservation = yield consulta.one(penalizacion_sql_1.SQL_PENALIZACION.HOW_MANY_RESERVATION, [datos.idReservacionPenalizacion]);
+                const typePenalty = yield consulta.one(penalizacion_sql_1.SQL_PENALIZACION.HOW_MANY_TYPE_PENALTY, [datos.idTipoPenalizacion]);
+                if (person.existe == 1 &&
+                    reservation.existe == 1 &&
+                    typePenalty.existe == 1) {
                     queHacer = 1;
                     penaltyYeah = yield consulta.one(penalizacion_sql_1.SQL_PENALIZACION.ADD, [
                         datos.idPersonaPenalizacion,
@@ -52,7 +51,7 @@ class PenalizacionDAO {
                         datos.fechaInicioPenalizacion,
                         datos.fechaFinPenalizacion,
                         datos.horaInicioPenalizacion,
-                        datos.horaFinPenalizacion
+                        datos.horaFinPenalizacion,
                     ]);
                 }
                 return { queHacer, penaltyYeah };
@@ -70,6 +69,50 @@ class PenalizacionDAO {
                 .catch((miError) => {
                 console.log(miError);
                 res.status(400).json({ respuesta: "hayun error" });
+            });
+        });
+    }
+    static eliminar(idPenalizacion, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                consulta.query(estadopenalizacion_sql_1.SQL_ESTADO_PENALIZACION.DELETE_BY_PENALTY, idPenalizacion);
+                return consulta.query(penalizacion_sql_1.SQL_PENALIZACION.DELETE, idPenalizacion);
+            }))
+                .then((respuesta) => {
+                res
+                    .status(200)
+                    .json({ respuesta: "Borrado :)", info: respuesta.rowCount });
+            })
+                .catch((error) => {
+                console.log(error);
+                res.status(400).json({ respuesta: "Pailas, sql totiado" });
+            });
+        });
+    }
+    static actualizar(datos, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield dbConnection_1.default
+                .task((consulta) => __awaiter(this, void 0, void 0, function* () {
+                return yield consulta.query(penalizacion_sql_1.SQL_PENALIZACION.UPDATE, [
+                    datos.idPersonaPenalizacion,
+                    datos.idReservacionPenalizacion,
+                    datos.idTipoPenalizacion,
+                    datos.fechaInicioPenalizacion,
+                    datos.fechaFinPenalizacion,
+                    datos.horaInicioPenalizacion,
+                    datos.horaFinPenalizacion,
+                    datos.idPenalizacion
+                ]);
+            }))
+                .then((respuesta) => {
+                res
+                    .status(200)
+                    .json({ respuesta: "Actualizado :)", info: respuesta.rowCount });
+            })
+                .catch((error) => {
+                console.log(error);
+                res.status(400).json({ Respuesta: "sql totiado" });
             });
         });
     }

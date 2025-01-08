@@ -113,3 +113,32 @@ CREATE TABLE estados_penalizaciones (
     FOREIGN KEY (id_penalizacion_estado_penalizacion) REFERENCES penalizaciones(id_penalizacion)
 
 );
+
+CREATE TABLE categorias {
+    id_categoria SERIAL NOT NULL PRIMARY KEY,
+    nombre_categoria VARCHAR(100) NOT NULL,    
+};
+
+CREATE TABLE peliculas{
+    
+        id_pelicula SERIAL NOT NULL PRIMARY KEY,
+        nombre_pelicula VARCHAR(100) NOT NULL,
+        fecha_estreno_pelicula DATE NOT NULL,
+        duracion_pelicula TIME NOT NULL,
+        id_categoria_pelicula INTEGER NOT NULL,
+
+        FOREIGN KEY (id_categoria_pelicula) REFERENCES categorias(id_categoria)
+    
+    };
+
+INSERT INTO categorias(nombre_categoria) VALUES ('Acción');
+INSERT INTO categorias(nombre_categoria) VALUES ('Comedia');
+INSERT INTO categorias(nombre_categoria) VALUES ('Drama');
+INSERT INTO categorias(nombre_categoria) VALUES ('Terror');
+INSERT INTO categorias(nombre_categoria) VALUES ('Ciencia Ficción');
+
+INSERT INTO peliculas(nombre_pelicula, fecha_estreno_pelicula, duracion_pelicula, id_categoria_pelicula) VALUES ('Rápido y Furioso 9', '2021/06/25', '02:23:00', 1);
+INSERT INTO peliculas(nombre_pelicula, fecha_estreno_pelicula, duracion_pelicula, id_categoria_pelicula) VALUES ('Space Jam: Una Nueva Era', '2021/07/16', '01:55:00', 2);
+INSERT INTO peliculas(nombre_pelicula, fecha_estreno_pelicula, duracion_pelicula, id_categoria_pelicula) VALUES ('Cruella', '2021/05/28', '02:14:00', 3);
+INSERT INTO peliculas(nombre_pelicula, fecha_estreno_pelicula, duracion_pelicula, id_categoria_pelicula) VALUES ('El Conjuro 3: El Diablo Me Obligó a Hacerlo', '2021/06/04', '01:52:00', 4);
+INSERT INTO peliculas(nombre_pelicula, fecha_estreno_pelicula, duracion_pelicula, id_categoria_pelicula) VALUES ('Godzilla vs. Kong', '2021/03/31', '01:53:00', 5);

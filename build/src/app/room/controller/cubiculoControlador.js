@@ -7,7 +7,12 @@ const cubiculo_1 = __importDefault(require("../entity/cubiculo"));
 const cubiculoDAO_1 = __importDefault(require("../dao/cubiculoDAO"));
 class CubiculoControlador extends cubiculoDAO_1.default {
     damelasTodas(req, res) {
-        cubiculoDAO_1.default.obtenerTodos([], res);
+        const limit = Number(req.params.limit);
+        const offset = Number(req.params.offset);
+        cubiculoDAO_1.default.obtenerTodos([], limit, offset, res);
+    }
+    count(req, res) {
+        cubiculoDAO_1.default.contarTodos([], res);
     }
     cogeTuCubiculo(req, res) {
         const objCubi = new cubiculo_1.default(0, 0, 0, "0");

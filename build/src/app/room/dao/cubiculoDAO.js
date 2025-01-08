@@ -14,11 +14,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbConnection_1 = __importDefault(require("../../../config/connection/dbConnection"));
 const cubiculo_sql_1 = require("../repository/cubiculo_sql");
+const faker_1 = require("@faker-js/faker");
 class CubiculoDAO {
-    static obtenerTodos(params, res) {
+    static obtenerTodos(params, limit, offset, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const parsedLimit = limit;
+            const parsedOffset = offset;
+            const queryParams = [parsedLimit, parsedOffset];
+            yield dbConnection_1.default
+                .result(cubiculo_sql_1.SQL_CUBICULO.GET_ALL, queryParams)
+                .then((resultado) => {
+                res.status(200).json(resultado.rows);
+            })
+                .catch((miError) => {
+                console.log(miError);
+                res.status(400).json({ respuesta: "hayun error" });
+            });
+        });
+    }
+    static contarTodos(params, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield dbConnection_1.default
-                .result(cubiculo_sql_1.SQL_CUBICULO.GET_ALL, params)
+                .result(cubiculo_sql_1.SQL_CUBICULO.COUNT)
                 .then((resultado) => {
                 res.status(200).json(resultado.rows);
             })
@@ -32,27 +49,22 @@ class CubiculoDAO {
         return __awaiter(this, void 0, void 0, function* () {
             yield dbConnection_1.default
                 .task((consulta) => __awaiter(this, void 0, void 0, function* () {
-                let queHacer = 1;
-                let cubiYeah;
-                const cubi = yield consulta.one(cubiculo_sql_1.SQL_CUBICULO.HOW_MANY, [
-                    datos.numeroCubiculo,
-                ]);
-                if (cubi.existe == 0) {
-                    queHacer = 2;
-                    const cubiYeah = yield consulta.one(cubiculo_sql_1.SQL_CUBICULO.ADD, [
-                        datos.numeroCubiculo,
-                        datos.capacidadMaximaCubiculo,
+                let queHacer = 0;
+                for (let index = 0; index < 1000; index++) {
+                    yield consulta.one(cubiculo_sql_1.SQL_CUBICULO.ADD, [
+                        faker_1.faker.number.int({ max: 1000 }),
+                        faker_1.faker.number.int({ max: 30 })
                     ]);
                 }
-                return { queHacer, cubiYeah };
+                return queHacer;
             }))
-                .then(({ queHacer, cubiYeah }) => {
+                .then((queHacer) => {
                 switch (queHacer) {
                     case 1:
                         res.status(400).json({ respuesta: "ya existe" });
                         break;
                     default:
-                        res.status(200).json(cubiYeah);
+                        res.status(200).json({ respuesta: "Agregado" });
                         break;
                 }
             })
@@ -83,16 +95,10 @@ class CubiculoDAO {
         return __awaiter(this, void 0, void 0, function* () {
             dbConnection_1.default
                 .task((consulta) => __awaiter(this, void 0, void 0, function* () {
-                let queHacer = 0;
-                let cubiYeah;
-                const cubi = yield consulta.one(cubiculo_sql_1.SQL_CUBICULO.HOW_MANY2, [
-                    datos.numeroCubiculo,
-                    datos.idCubiculo,
-                ]);
-                if (cubi.existe == 0) {
-                    queHacer = 1;
+                let queHacer = 1;
+                for (let index = 0; index < 1000; index++) {
                     yield consulta.none(cubiculo_sql_1.SQL_CUBICULO.UPDATE, [
-                        datos.numeroCubiculo,
+                        datos.numeroCubiculo + index,
                         datos.capacidadMaximaCubiculo,
                         datos.idCubiculo,
                     ]);
@@ -109,7 +115,7 @@ class CubiculoDAO {
             })
                 .catch((myError) => {
                 console.log(myError);
-                res.status(400).json({ respuesta: "Pailas, no se actualizó" });
+                res.status(400).json({ respuesta: "No se ha borrado" });
             });
         });
     }
