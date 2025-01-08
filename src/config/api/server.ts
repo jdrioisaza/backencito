@@ -49,8 +49,6 @@ class Server {
         this.app.use("/reservationstatustype", tipoEstadoReservacionRutas);
         this.app.use("/reservationstatus", EstadoReservacionRutas);
         this.app.use("/penaltystatus", estadoPenalizacionRutas);
-        this.app.use("/category", categoryRutas);
-        this.app.use("/movie", movieRutas);
 
     }
 

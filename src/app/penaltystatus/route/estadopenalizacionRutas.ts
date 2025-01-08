@@ -15,7 +15,8 @@ class EstadoPenalizacionRutas {
     private misRutas():void {
         this.apiRutaEstadoPenalizacion.get("/getall", estadoPenalizacionControlador.damelasTodas)
         this.apiRutaEstadoPenalizacion.post("/addcito", estadoPenalizacionControlador.cogeTuEstadoPenalizacion);
-    }
+        this.apiRutaEstadoPenalizacion.delete("/delete/:idEstadoPenalizacion", estadoPenalizacionControlador.borraTuEstadoPenalizacion);
+        this.apiRutaEstadoPenalizacion.put("/update", estadoPenalizacionControlador.actualiceTuEstadoPenalizacion);}
 }
 
 const estadoPenalizacionRutas = new EstadoPenalizacionRutas;

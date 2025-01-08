@@ -39,10 +39,11 @@ class LoginDAO {
                 ]);
                 if (find.existe != 0) {
                     queHacer = 2;
-                    const LogYeah = yield consulta.one(login_sql_1.SQL_LOGIN.SEARCH_PASS, [
+                    const LogYeah = yield consulta.one(login_sql_1.SQL_LOGIN.CONF_LOGIN, [
+                        datos.correoElectronicoLogin,
                         datos.claveLogin,
                     ]);
-                    if (LogYeah.existe != 0) {
+                    if (LogYeah.conf == 1) {
                         queHacer = 3;
                     }
                 }
@@ -61,7 +62,7 @@ class LoginDAO {
                         });
                         break;
                     default:
-                        res.status(200).json(LogYeah);
+                        res.status(200).json(datos);
                         break;
                 }
             })

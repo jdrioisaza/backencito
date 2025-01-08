@@ -12,7 +12,7 @@ class LoginRutas {
     
     private misRutas():void {
         this.apiRutaLogin.get("/getall", loginControlador.damelasTodas);
-        this.apiRutaLogin.post("/login", loginControlador.access);
+        this.apiRutaLogin.post("/ingresar", loginControlador.access);
     }
 
 }

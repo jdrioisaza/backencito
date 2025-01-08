@@ -42,8 +42,6 @@ class Server {
         this.app.use("/reservationstatustype", tipoestadodereservaRutas_1.default);
         this.app.use("/reservationstatus", estadoreservacionRutas_1.default);
         this.app.use("/penaltystatus", estadopenalizacionRutas_1.default);
-        this.app.use("/category", routesCategory_1.default);
-        this.app.use("/movie", rutasMovie_1.default);
     }
     start() {
         this.app.listen(this.app.get("PORT"), () => {

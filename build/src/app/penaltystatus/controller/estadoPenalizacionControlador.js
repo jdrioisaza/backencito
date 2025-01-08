@@ -15,6 +15,27 @@ class EstadoPenalizacionControlador extends estadopenalizacionDAO_1.default {
         objEstPen.idPenalizacion = req.body.idPenalizacion;
         estadopenalizacionDAO_1.default.grabeloYa(objEstPen, res);
     }
+    borraTuEstadoPenalizacion(req, res) {
+        if (isNaN(Number(req.params.idEstadoPenalizacion))) {
+            res.status(400).json({ respuesta: "Y el codigo?" });
+        }
+        else {
+            const codigito = Number(req.params.idEstadoPenalizacion);
+            const objEstPen = new estadoPenalizacion_1.default(codigito, 0, 0);
+            estadopenalizacionDAO_1.default.borreloYa(objEstPen, res);
+        }
+    }
+    actualiceTuEstadoPenalizacion(req, res) {
+        if (isNaN(Number(req.body.idEstadoPenalizacion))) {
+            res.status(400).json({ respuesta: "Y el codigo?" });
+        }
+        else {
+            const objEstPen = new estadoPenalizacion_1.default(0, 0, 0);
+            objEstPen.idEstadoPenalizacion = Number(req.body.idEstadoPenalizacion);
+            objEstPen.idTipoEstadoPenalizacion = Number(req.body.idTipoEstadoPenalizacion);
+            objEstPen.idPenalizacion = Number(req.body.idPenalizacion);
+        }
+    }
 }
 const estadoPenalizacionControlador = new EstadoPenalizacionControlador();
 exports.default = estadoPenalizacionControlador;

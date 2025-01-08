@@ -11,6 +11,8 @@ exports.SQL_PENALIZACION = {
     HOW_MANY_RESERVATION: "SELECT COUNT(*) AS existe FROM reservaciones WHERE id_reservacion = $1",
     GET_PENALTY_BY_RESERVATION: "SELECT id_penalizacion as idPenal FROM penalizaciones WHERE id_reservacion_penalizacion = $1",
     HOW_MANY_TYPE_PENALTY: "SELECT COUNT(*) AS existe FROM tipos_penalizaciones WHERE id_tipo_penalizacion = $1",
+    PENALTY_EXIST: "SELECT COUNT(id_penalizacion) as existe FROM penalizaciones \
+    WHERE id_penalizacion = $1",
     DELETE: "DELETE FROM penalizaciones WHERE id_penalizacion = $1",
     DELETE_BY_RESERVATION: "DELETE FROM penalizaciones WHERE id_reservacion_penalizacion = $1",
     UPDATE: "UPDATE penalizaciones SET id_persona_penalizacion = $1, id_reservacion_penalizacion = $2, id_tipo_penalizacion = $3, fecha_inicio_penalizacion = $4, fecha_fin_penalizacion = $5, hora_inicio_penalizacion = $6, hora_fin_penalizacion = $7 \
